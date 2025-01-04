@@ -1,0 +1,21 @@
+[gd_resource type="StandardMaterial3D" load_steps=7 format=3 uid="uid://dy1ip5je34o6l"]
+
+[ext_resource type="Texture2D" uid="uid://oyujsb5aryc" path="res://models/light/lightpost1/Street_lamp_1_BaseColor.png" id="1_bbqfq"]
+[ext_resource type="Texture2D" uid="uid://ce2qk35ps6nk1" path="res://models/light/lightpost1/Street_lamp_1_AO.png" id="2_6bq7f"]
+[ext_resource type="Texture2D" uid="uid://c2kmocf7w4aes" path="res://models/light/lightpost1/Street_lamp_1_Emissive.png" id="3_0t1dx"]
+[ext_resource type="Texture2D" uid="uid://e8c4chy52acv" path="res://models/light/lightpost1/Street_lamp_1_Metallic.png" id="4_kmggd"]
+[ext_resource type="Texture2D" uid="uid://c7iid5di7ue6t" path="res://models/light/lightpost1/Street_lamp_1_Normal.png" id="5_0tqhx"]
+[ext_resource type="Texture2D" uid="uid://d1j44x21vumfm" path="res://models/light/lightpost1/Street_lamp_1_Roughness.png" id="6_dgfti"]
+
+[resource]
+albedo_texture = ExtResource("1_bbqfq")
+metallic = 1.0
+metallic_texture = ExtResource("4_kmggd")
+roughness_texture = ExtResource("6_dgfti")
+emission_enabled = true
+emission_texture = ExtResource("3_0t1dx")
+normal_enabled = true
+normal_texture = ExtResource("5_0tqhx")
+ao_enabled = true
+ao_light_affect = 0.5
+ao_texture = ExtResource("2_6bq7f")

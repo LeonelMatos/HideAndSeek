@@ -1,0 +1,14 @@
+[remap]
+
+importer="qodot.map"
+type="Resource"
+uid="uid://dn5qslb7xe4gq"
+path="res://.godot/imported/house.map-0e76dfa85116fec5ec753ed7cdb04acb.tres"
+
+[deps]
+
+source_file="res://levels/house.map"
+dest_files=["res://.godot/imported/house.map-0e76dfa85116fec5ec753ed7cdb04acb.tres"]
+
+[params]
+

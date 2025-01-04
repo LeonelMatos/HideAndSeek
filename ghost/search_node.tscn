@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://baitq3eec7wof"]
+
+[ext_resource type="Script" path="res://ghost/search_node.gd" id="1_07bh2"]
+[ext_resource type="Texture2D" uid="uid://bqpi03quahn6s" path="res://textures/prototype_textures/dark/texture_03.png" id="1_gxa2m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8doq2"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.588235)
+albedo_texture = ExtResource("1_gxa2m")
+emission_enabled = true
+emission = Color(0.314316, 0.314316, 0.314316, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_aow5m"]
+material = SubResource("StandardMaterial3D_8doq2")
+radial_segments = 32
+
+[node name="SearchNode" type="Node3D"]
+script = ExtResource("1_07bh2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_aow5m")

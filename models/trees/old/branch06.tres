@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cwymdi5r8y83x"]
+
+[ext_resource type="Texture2D" uid="uid://csbn06ydrvgca" path="res://models/trees/old/old_tree_branch06.png" id="1_u0ki8"]
+
+[resource]
+resource_name = "branch06"
+transparency = 2
+alpha_scissor_threshold = 0.007
+alpha_antialiasing_mode = 1
+alpha_antialiasing_edge = 0.04
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_u0ki8")

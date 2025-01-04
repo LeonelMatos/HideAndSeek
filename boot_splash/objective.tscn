@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://dohvlsft3t7gf"]
+
+[ext_resource type="Script" path="res://addons/splash_screen_wizard/splash_screen_slide.gd" id="1_4f84i"]
+[ext_resource type="FontFile" uid="uid://dtjwe2kpno3a6" path="res://fonts/AmaticSC-Bold.ttf" id="2_dtkiy"]
+[ext_resource type="Script" path="res://scripts/ui/objective.gd" id="3_0ndsg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6nwf2"]
+font = ExtResource("2_dtkiy")
+font_size = 50
+outline_size = 2
+outline_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 0.196078)
+
+[node name="Objective" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4f84i")
+
+[node name="Objective" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -105.0
+offset_right = 102.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Find the ghost"
+label_settings = SubResource("LabelSettings_6nwf2")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_0ndsg")

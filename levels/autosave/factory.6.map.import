@@ -1,0 +1,14 @@
+[remap]
+
+importer="qodot.map"
+type="Resource"
+uid="uid://cpmqdsklhhrq5"
+path="res://.godot/imported/factory.6.map-98ae47208bcc4145c1f2902cd0ebeefa.tres"
+
+[deps]
+
+source_file="res://levels/autosave/factory.6.map"
+dest_files=["res://.godot/imported/factory.6.map-98ae47208bcc4145c1f2902cd0ebeefa.tres"]
+
+[params]
+
