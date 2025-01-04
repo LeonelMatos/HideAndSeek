@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://baitq3eec7wof"]
+[gd_scene load_steps=6 format=3 uid="uid://baitq3eec7wof"]
 
 [ext_resource type="Script" path="res://ghost/search_node.gd" id="1_07bh2"]
 [ext_resource type="Texture2D" uid="uid://bqpi03quahn6s" path="res://textures/prototype_textures/dark/texture_03.png" id="1_gxa2m"]
@@ -14,8 +14,18 @@ emission = Color(0.314316, 0.314316, 0.314316, 1)
 material = SubResource("StandardMaterial3D_8doq2")
 radial_segments = 32
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_5itr0"]
+
 [node name="SearchNode" type="Node3D"]
 script = ExtResource("1_07bh2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_aow5m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_07bh2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_5itr0")

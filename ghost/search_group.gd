@@ -6,9 +6,14 @@ extends Node
 ##Area3D on the ghost to detect searchNodes
 @export var search_area: SearchArea
 ##Size of search_area. Must be more than 1. No max
-@export var search_range: int = 10
+##Actually must be 0,1,2 because in passing
+##to search_area.set_range it will be associated to the
+##close, medium, far shapes of the search area
+#TODO add a func or inside set_range to convert the search distance
+#into a value inside the respective searchArea shape. See SearchArea iterations sizes
+@export var search_range: int = 1
 
-#Defines when the search_area is active to find nodes
+##Defines when the search_area is active to find nodes. Should only be when ghost searchs
 var active_search: bool = true
 
 #Active search nodes that the ghost will use to wander or search
@@ -27,9 +32,11 @@ func _ready():
 	#Checks
 	if !search_area:
 		printerr("SearchGroup: search_area not defined in editor")
+	#Hide debug nodes on runtime for runtime? weird flex
+	#TODO hide debug nodes before entering runtime maybe
 	for child in get_children():
 		if child is SearchNode:
-			child.visible = false
+			child.visible = false 
 	search_area.set_range(search_range)
 	refresh_search_area()
 
