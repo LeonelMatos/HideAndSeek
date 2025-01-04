@@ -6,10 +6,11 @@ class_name SearchArea
 @onready var collision: CollisionShape3D = null
 @onready var mesh: MeshInstance3D = null
 
-@export var shape_close: SphereShape3D
-@export var shape_medium: SphereShape3D
-@export var shape_far: SphereShape3D
+@export var shape_close: SphereShape3D  #Index 0
+@export var shape_medium: SphereShape3D #Index 1
+@export var shape_far: SphereShape3D    #Index 2
 
+#Corresponding sizes of the sphere shapes for the mesh
 var scale_factors = [10.0, 20.0, 30.0]
 
 func set_range(rng: int) -> void:
@@ -39,10 +40,14 @@ func set_range(rng: int) -> void:
 func find_nodes() -> Array[SearchNode]:
 	area = get_node("Area3D") as Area3D
 	var searchNodes: Array[SearchNode] = []
-	var bodies: Array[Node3D] = area.get_overlapping_bodies()
-	for body in bodies:
-		if body is SearchNode:
-			searchNodes.append(body)
+	
+	for body in area.get_overlapping_bodies():
+		print(" Checking body: ", body, " of type ", body.get_class())
+		if body is StaticBody3D:
+			var node = body as SearchNode
+			if node != null:
+				searchNodes.append(body)
+	
 	return searchNodes
 
 #TODO FUCKING IMPORTANT!! When scaling search_area node it doesn't increase the area 3d dummy
