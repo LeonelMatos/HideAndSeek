@@ -5,6 +5,8 @@
 
 [sub_resource type="SphereMesh" id="SphereMesh_aow5m"]
 material = ExtResource("2_pgakj")
+radius = 0.25
+height = 0.5
 radial_segments = 32
 
 [node name="Node3D" type="Node3D"]

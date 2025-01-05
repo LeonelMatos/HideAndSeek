@@ -73,7 +73,6 @@ func nav_setup():
 
 # Calculate ghost's navigation
 func _physics_process(delta):
-
 	var direction = Vector3()
 	if ready_nav:
 		nav.target_position = player.global_position
@@ -84,12 +83,7 @@ func _physics_process(delta):
 		move_and_slide()
 		look_at(player.global_transform.origin)
 	
-	#TODO Rotate the ghost if player is near
-	if position.distance_to(player.position) <= close_distance:
-		direction = player.position.normalized()
-		direction.y = 0
-		#rotation.y = lerp_angle(rotation.y, atan2(direction.x, direction.z), delta * 10.0)
-		#BUG fix this shit
+	look_at_player(direction)
 
 # Moves the ghost to a random spawn
 # args: difficulty from 0 to spawn_location's number of sub-arrays
@@ -103,6 +97,15 @@ func spawn_ghost(difficulty: int):
 	position = rand_position
 	interactionArea.monitoring = true
 	print("Spawned ghost @%s diff %d" % [rand_position, difficulty])
+
+# Ghost looks at player when he's near (broken)
+func look_at_player(direction: Vector3):
+	#TODO Rotate the ghost if player is near
+	if position.distance_to(player.position) <= close_distance:
+		direction = player.position.normalized()
+		direction.y = 0
+		#rotation.y = lerp_angle(rotation.y, atan2(direction.x, direction.z), delta * 10.0)
+		#BUG fix this shit
 
 # Trigger box of ghost area3D node with collided body (player)
 func _on_3d_body_entered(coll_body):

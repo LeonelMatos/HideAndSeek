@@ -8,7 +8,7 @@ class_name GhostDirector
 @export var search_area: SearchArea
 
 ##Defines when the search_area is active to find nodes. Should only be when ghost searchs
-var active_search: bool = true
+var active_search: bool = false
 
 #Active search nodes that the ghost will use to wander or search
 var selected_nodes: Array[SearchNode] = []
@@ -41,6 +41,11 @@ func refresh_search_area() -> void:
 		selected_nodes = search_area.find_nodes()
 		game_manager.set_director_debug_text(active_search, selected_nodes.size())
 
+#Returns a random node from the selected search nodes
+func get_random_node() -> SearchNode:
+	var rnd = randi_range(0, selected_nodes.size()-1)
+	return selected_nodes[rnd]
+
 #Signal from gamemanager
 func _on_game_manager_debug():
 	for child in get_children():
@@ -53,3 +58,10 @@ func array_to_string(arr: Array[String], separator: String = "\n") -> String:
 	for i in arr:
 		s += String(i) + separator
 	return s
+
+#Call from ghost to tell when it's searching
+func _on_ghost_on_searching_change(value):
+	active_search = value
+	#Refreshes and saves the selected nodes
+	if active_search == true:
+		refresh_search_area()
