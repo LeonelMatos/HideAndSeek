@@ -2,53 +2,46 @@ extends Node3D
 
 class_name SearchArea
 
-@onready var area: Area3D = null
-@onready var collision: CollisionShape3D = null
-@onready var mesh: MeshInstance3D = null
+## Ghost Director
+@export var director: GhostDirector
 
-@export var shape_close: SphereShape3D  #Index 0
-@export var shape_medium: SphereShape3D #Index 1
-@export var shape_far: SphereShape3D    #Index 2
+## Debug sphere of the ghost's range
+@onready var mesh: MeshInstance3D
 
-#Corresponding sizes of the sphere shapes for the mesh
-var scale_factors = [10.0, 20.0, 30.0]
+## Range of the ghost's search, must be greater than 0
+@export_range(1,50,1,"or_greater") var search_range: float = 10:
+	set(value): 
+		search_range = maxf(1,value)
 
-func set_range(rng: int) -> void:
-	collision = get_node("Area3D/CollisionShape3D") as CollisionShape3D
-	mesh = get_node("Area3D/MeshInstance3D") as MeshInstance3D
-	if rng < 0 or rng > scale_factors.size():
-		printerr("SearchArea: range must be between 0 and 2")
-		return
-	if collision == null:
-		printerr("SearchArea: collision or collision.shape invalid")
-		return
-	
-	collision.disabled = true
-	match rng:
-		0:
-			collision.shape = shape_close
-		1:
-			collision.shape = shape_medium
-		2:
-			collision.shape = shape_far
-	collision.disabled = false
+func _ready():
+	assert(director)
 
-	var scale = scale_factors[rng]
-	mesh.scale = Vector3(scale, scale, scale)
-	print("SearchArea: search range updated")
+func set_range(rng: float) -> void:
+	search_range = rng
 
+## Finds nodes children of GhostDirector near the ghost by range
 func find_nodes() -> Array[SearchNode]:
-	area = get_node("Area3D") as Area3D
+	#Array of selected nodes
 	var searchNodes: Array[SearchNode] = []
-	
-	for body in area.get_overlapping_bodies():
-		print(" Checking body: ", body, " of type ", body.get_class())
-		if body is StaticBody3D:
-			var node = body as SearchNode
-			if node != null:
-				searchNodes.append(body)
-	
+	#Position of the SearchArea
+	var origin = self.global_transform.origin
+	var node_pos: Vector3
+	var distance: float
+	for node in director.get_children():
+		if node is SearchNode:
+			node_pos = node.global_transform.origin
+			distance = origin.distance_to(node_pos)
+			if distance <= search_range:
+				searchNodes.append(node)
 	return searchNodes
 
-#TODO FUCKING IMPORTANT!! When scaling search_area node it doesn't increase the area 3d dummy
-#Specificaly increase the collisionShape and the MeshInstance
+# Enable/Disable debug view of the search area
+func _on_game_manager_debug():
+	mesh = get_node("DebugMesh") as MeshInstance3D
+	assert(mesh)
+	if !mesh.visible:
+		mesh.global_scale(Vector3(search_range, search_range, search_range))
+		mesh.visible = true
+		print("Correctly set the mesh scale")
+	else:
+		mesh.visible = false

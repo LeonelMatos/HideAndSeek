@@ -47,9 +47,9 @@ func printGameVersion():
 	Performance.get_monitor(Performance.RENDER_TOTAL_OBJECTS_IN_FRAME), \
 	ghostdirector_debug_text]
 
-func set_director_debug_text(active_search: bool, nodes: String = "") -> void:
+func set_director_debug_text(active_search: bool, nodes: int = 0) -> void:
 	ghostdirector_debug_text = "active_search %s \n \
-	Active search_nodes: %s" % [active_search, nodes]
+	Active search_nodes: %d" % [active_search, nodes]
 
 #Converts an array of strings to a string. With optional separator
 #TODO Useless now

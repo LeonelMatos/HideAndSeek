@@ -1,17 +1,11 @@
 extends Node
+class_name GhostDirector
 
 ##Used of debug mode
 @export var game_manager: Node
 
 ##Area3D on the ghost to detect searchNodes
 @export var search_area: SearchArea
-##Size of search_area. Must be more than 1. No max
-##Actually must be 0,1,2 because in passing
-##to search_area.set_range it will be associated to the
-##close, medium, far shapes of the search area
-#TODO add a func or inside set_range to convert the search distance
-#into a value inside the respective searchArea shape. See SearchArea iterations sizes
-@export var search_range: int = 1
 
 ##Defines when the search_area is active to find nodes. Should only be when ghost searchs
 var active_search: bool = true
@@ -37,17 +31,18 @@ func _ready():
 	for child in get_children():
 		if child is SearchNode:
 			child.visible = false 
-	search_area.set_range(search_range)
+	#search_area.set_range(search_range)
 	refresh_search_area()
 
 #TODO maybe refresh only when the ghost finished arriving at the previous/current node
 func refresh_search_area() -> void:
-	#game_manager.concatenate_debug_text("activce_search: %s" % active_search)
+	#game_manager.concatenate_debug_text("active_search: %s" % active_search)
 	while active_search:
 		await get_tree().create_timer(5.0).timeout
 		selected_nodes = search_area.find_nodes()
 		print("nodes found: ", selected_nodes) #TODO remove later
-		game_manager.set_director_debug_text(active_search, array_to_string(get_nodes_name(selected_nodes)))
+		#game_manager.set_director_debug_text(active_search, array_to_string(get_nodes_name(selected_nodes)))
+		game_manager.set_director_debug_text(active_search, selected_nodes.size())
 
 #Signal from gamemanager
 func _on_game_manager_debug():
