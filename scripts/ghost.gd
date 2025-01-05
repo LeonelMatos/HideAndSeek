@@ -7,6 +7,7 @@ signal ghost_found
 #Navigation
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
 @export var nav_region: NavigationRegion3D
+@export var director: GhostDirector
 
 var ready_nav: bool = false
 
@@ -74,14 +75,16 @@ func nav_setup():
 # Calculate ghost's navigation
 func _physics_process(delta):
 	var direction = Vector3()
-	if ready_nav:
-		nav.target_position = player.global_position
+	#if ready_nav:
+		#nav.target_position = player.global_position
 	if is_searching:
 		direction = nav.get_next_path_position() - global_position
 		direction = direction.normalized()
 		velocity = velocity.lerp(direction * speed, accel * delta)
-		move_and_slide()
-		look_at(player.global_transform.origin)
+		if !nav.is_target_reached():
+			move_and_slide()
+		#look_at(player.global_transform.origin)
+		look_at(nav.target_position)
 	
 	look_at_player(direction)
 
@@ -132,6 +135,15 @@ func _on_main_timer_timeout():
 		await ghost_appear_slide(1)
 		nav_region.enabled = true
 		print("Ghost: spawned searching ghost @%s" % position)
+		
+		#Nav search
+		if !ready_nav:
+			printerr("Ghost: navigation not ready when defining target")
+		print("Ghost: ready to define next search position")
+		nav.target_position = director.get_random_node_pos()
+		
+		
+		
 	else: #is hiding this new timer
 		#Stops searching
 		nav_region.enabled = false

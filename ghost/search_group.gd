@@ -7,6 +7,10 @@ class_name GhostDirector
 ##Area3D on the ghost to detect searchNodes
 @export var search_area: SearchArea
 
+##Time of refresh on refresh_search_area. Must be positive
+@export var refresh_time: float = 1.0:
+	set(value): refresh_time = maxf(0,value)
+
 ##Defines when the search_area is active to find nodes. Should only be when ghost searchs
 var active_search: bool = false
 
@@ -23,6 +27,7 @@ func get_nodes_name(group: Array[SearchNode]) -> Array[String]:
 	return arr
 
 func _ready():
+	randomize()
 	#Checks
 	if !search_area:
 		printerr("SearchGroup: search_area not defined in editor")
@@ -37,14 +42,19 @@ func _ready():
 #TODO maybe refresh only when the ghost finished arriving at the previous/current node
 func refresh_search_area() -> void:
 	while active_search:
-		await get_tree().create_timer(5.0).timeout
 		selected_nodes = search_area.find_nodes()
+		print("Updated search area. Found ", selected_nodes.size(), " nodes")
 		game_manager.set_director_debug_text(active_search, selected_nodes.size())
+		await get_tree().create_timer(refresh_time).timeout
 
 #Returns a random node from the selected search nodes
-func get_random_node() -> SearchNode:
+func get_random_node_pos() -> Vector3:
+	if selected_nodes.is_empty():
+		printerr("Group: Can't select random node because selected_nodes is empty")
+		return Vector3.ZERO
 	var rnd = randi_range(0, selected_nodes.size()-1)
-	return selected_nodes[rnd]
+	print("Group: Selected random node: ", rnd)
+	return selected_nodes[rnd].global_position
 
 #Signal from gamemanager
 func _on_game_manager_debug():

@@ -22,6 +22,7 @@ axis_lock_angular_x = true
 script = ExtResource("1_owvo8")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 2.0
 
 [node name="DebugMesh" type="MeshInstance3D" parent="."]
 visible = false
