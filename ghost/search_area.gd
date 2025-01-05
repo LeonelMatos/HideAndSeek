@@ -37,11 +37,12 @@ func find_nodes() -> Array[SearchNode]:
 
 # Enable/Disable debug view of the search area
 func _on_game_manager_debug():
-	mesh = get_node("DebugMesh") as MeshInstance3D
-	assert(mesh)
-	if !mesh.visible:
-		mesh.global_scale(Vector3(search_range, search_range, search_range))
-		mesh.visible = true
-		print("Correctly set the mesh scale")
-	else:
-		mesh.visible = false
+	if director.active_search:
+		mesh = get_node("DebugMesh") as MeshInstance3D
+		assert(mesh)
+		if !mesh.visible:
+			mesh.scale = Vector3(search_range, search_range, search_range)
+			mesh.visible = true
+			print("Correctly set the mesh scale")
+		else:
+			mesh.visible = false

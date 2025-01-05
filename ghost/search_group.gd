@@ -36,12 +36,9 @@ func _ready():
 
 #TODO maybe refresh only when the ghost finished arriving at the previous/current node
 func refresh_search_area() -> void:
-	#game_manager.concatenate_debug_text("active_search: %s" % active_search)
 	while active_search:
 		await get_tree().create_timer(5.0).timeout
 		selected_nodes = search_area.find_nodes()
-		print("nodes found: ", selected_nodes) #TODO remove later
-		#game_manager.set_director_debug_text(active_search, array_to_string(get_nodes_name(selected_nodes)))
 		game_manager.set_director_debug_text(active_search, selected_nodes.size())
 
 #Signal from gamemanager
