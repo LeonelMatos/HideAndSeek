@@ -28,15 +28,15 @@ func find_nodes() -> Array[SearchNode]:
 	var node_pos: Vector3
 	var distance: float
 	#Initial value is search_range, then increments by 10 each attempt
-	var range: float = search_range
+	var rng: float = search_range
 	while searchNodes.is_empty():
 		for node in director.get_children():
 			if node is SearchNode:
 				node_pos = node.global_transform.origin
 				distance = origin.distance_to(node_pos)
-				if distance <= range:
+				if distance <= rng:
 					searchNodes.append(node)
-		range += 10.0
+		rng += 10.0
 	return searchNodes
 
 # Enable/Disable debug view of the search area
