@@ -9,13 +9,16 @@ class_name GhostDirector
 
 ##Time of refresh on refresh_search_area. Must be positive
 @export var refresh_time: float = 1.0:
-	set(value): refresh_time = maxf(0,value)
+	set(value): refresh_time = maxf(0.5,value)
 
 ##Defines when the search_area is active to find nodes. Should only be when ghost searchs
 var active_search: bool = false
 
 #Active search nodes that the ghost will use to wander or search
 var selected_nodes: Array[SearchNode] = []
+
+#Stores old nodes that were previously used by navigation. Memory of 3
+var old_nodes: Array[SearchNode] = []
 
 #Gets all the names of all search_nodes in an array
 func get_nodes_name(group: Array[SearchNode]) -> Array[String]:
@@ -55,6 +58,12 @@ func get_random_node_pos() -> Vector3:
 	var rnd = randi_range(0, selected_nodes.size()-1)
 	print("Group: Selected random node: ", rnd)
 	return selected_nodes[rnd].global_position
+
+#Pondered node returned considering parameters
+#Can't be the same node that the ghost is in and can't be the previous few nodes
+#Same node should be added to the old nodes and exclude old nodes from the search
+func get_next_node_pos() -> Vector3:
+	return Vector3.ONE
 
 #Signal from gamemanager
 func _on_game_manager_debug():

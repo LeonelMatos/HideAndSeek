@@ -71,6 +71,8 @@ func nav_setup():
 	nav.set_physics_process(true)
 	nav.target_position = player.global_position
 	ready_nav = true
+	#Connect the signal of target reached to the ghost
+	nav.connect("target_reached", Callable(self, "_on_target_reached"))
 
 # Calculate ghost's navigation
 func _physics_process(delta):
@@ -83,10 +85,9 @@ func _physics_process(delta):
 		velocity = velocity.lerp(direction * speed, accel * delta)
 		if !nav.is_target_reached():
 			move_and_slide()
-		#look_at(player.global_transform.origin)
 		look_at(nav.target_position)
-	
-	look_at_player(direction)
+	else:
+		look_at_player(direction)
 
 # Moves the ghost to a random spawn
 # args: difficulty from 0 to spawn_location's number of sub-arrays
@@ -102,7 +103,7 @@ func spawn_ghost(difficulty: int):
 	print("Spawned ghost @%s diff %d" % [rand_position, difficulty])
 
 # Ghost looks at player when he's near (broken)
-func look_at_player(direction: Vector3):
+func look_at_player(direction: Vector3) -> void:
 	#TODO Rotate the ghost if player is near
 	if position.distance_to(player.position) <= close_distance:
 		direction = player.position.normalized()
@@ -120,6 +121,7 @@ func _on_3d_body_exited(coll_body):
 		player_inside = false
 
 #Signal from end of main timer of player searching
+#Also where navigation gets target
 func _on_main_timer_timeout():
 	is_searching = !is_searching
 	on_searching_change.emit(is_searching)
@@ -136,13 +138,10 @@ func _on_main_timer_timeout():
 		nav_region.enabled = true
 		print("Ghost: spawned searching ghost @%s" % position)
 		
-		#Nav search
+		#Nav search. First movement direction, nav will keep going on _on_target_reached
 		if !ready_nav:
 			printerr("Ghost: navigation not ready when defining target")
-		print("Ghost: ready to define next search position")
 		nav.target_position = director.get_random_node_pos()
-		
-		
 		
 	else: #is hiding this new timer
 		#Stops searching
@@ -152,7 +151,6 @@ func _on_main_timer_timeout():
 		spawn_ghost(0) #TODO update difficulty
 
 func ghost_appear_slide(direction: int) -> void:
-	
 	#NOTE may be bugged. skip if not searching
 	#to avoid unexpected movement in hiding
 	#it's not this. Can remove if needed
@@ -169,6 +167,31 @@ func ghost_appear_slide(direction: int) -> void:
 		await get_tree().create_timer(0.01).timeout
 	collision.disabled = false
 	nav.set_physics_process(true)
+
+#Nav aux functions
+
+#Signal from nav agent when reached search node.
+#Handles the ghost's behavior on how to proceed
+func _on_target_reached():
+	print("Ghost: reached target position")
+	###TODO finish the behaviour
+
+#Nav SearchNode reached option.
+#TODO Will look around to search for the player
+func look_around_on_search() -> void:
+	pass
+
+#Nav SearchNode reached option.
+#TODO Will wait for a moment to relax a bit, why not... should it?
+func wait_on_search() -> void:
+	pass
+
+#Nav SearchNode reached option.
+# Will move to the next nearby node. 
+#TODO should ponder better on which node to go instead of random
+#Change of deciding to go to a node with distance closer to player?
+func move_to_next_node() -> void:
+	nav.target_position = director.get_random_node_pos()
 
 func _on_game_manager_debug():
 	nav.debug_enabled = not nav.debug_enabled
