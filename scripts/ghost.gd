@@ -191,7 +191,7 @@ func wait_on_search() -> void:
 #TODO should ponder better on which node to go instead of random
 #Change of deciding to go to a node with distance closer to player?
 func move_to_next_node() -> void:
-	nav.target_position = director.get_random_node_pos()
+	nav.target_position = director.get_next_node_pos()
 
 func _on_game_manager_debug():
 	nav.debug_enabled = not nav.debug_enabled

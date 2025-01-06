@@ -20,6 +20,9 @@ var selected_nodes: Array[SearchNode] = []
 #Stores old nodes that were previously used by navigation. Memory of 3
 var old_nodes: Array[SearchNode] = []
 
+#Lenght of array/memory of old_nodes
+var old_nodes_len: int = 3
+
 #Gets all the names of all search_nodes in an array
 func get_nodes_name(group: Array[SearchNode]) -> Array[String]:
 	var arr: Array[String] = []
@@ -46,7 +49,7 @@ func _ready():
 func refresh_search_area() -> void:
 	while active_search:
 		selected_nodes = search_area.find_nodes()
-		print("Updated search area. Found ", selected_nodes.size(), " nodes")
+		#print("Updated search area. Found ", selected_nodes.size(), " nodes")
 		game_manager.set_director_debug_text(active_search, selected_nodes.size())
 		await get_tree().create_timer(refresh_time).timeout
 
@@ -56,14 +59,32 @@ func get_random_node_pos() -> Vector3:
 		printerr("Group: Can't select random node because selected_nodes is empty")
 		return Vector3.ZERO
 	var rnd = randi_range(0, selected_nodes.size()-1)
-	print("Group: Selected random node: ", rnd)
+	#print("Group: Selected random node: ", rnd)
+	add_old_node(selected_nodes[rnd])
 	return selected_nodes[rnd].global_position
 
 #Pondered node returned considering parameters
 #Can't be the same node that the ghost is in and can't be the previous few nodes
 #Same node should be added to the old nodes and exclude old nodes from the search
 func get_next_node_pos() -> Vector3:
-	return Vector3.ONE
+	if selected_nodes.is_empty():
+		printerr("Group: Can't select random node because selected_nodes is empty")
+		return Vector3.ZERO
+	#Maximum number of attempts to find a new unused node
+	var max_attempts: int = selected_nodes.size()
+	var attempt: int = 0
+	while attempt < max_attempts:
+		var rnd: int = randi_range(0,selected_nodes.size()-1)
+		var node: SearchNode = selected_nodes[rnd]
+		if !is_node_old(node):
+			add_old_node(node)
+			return node.global_position
+		attempt += 1
+	#There aren't valid new nodes, falling back to previous used node
+	printerr("No valid new node found. Backtracking to a random old node")
+	var fall_node: SearchNode = selected_nodes[randi_range(0, selected_nodes.size()-1)]
+	add_old_node(fall_node)
+	return fall_node.global_position
 
 #Signal from gamemanager
 func _on_game_manager_debug():
@@ -84,3 +105,19 @@ func _on_ghost_on_searching_change(value):
 	#Refreshes and saves the selected nodes
 	if active_search == true:
 		refresh_search_area()
+	else:
+		game_manager.set_director_debug_text(active_search, "off")
+
+#Adds the node to the old_nodes array of previously used.
+#Works as a circular buffer FIFO
+func add_old_node(node: SearchNode) -> void:
+	if old_nodes.size() > old_nodes_len:
+		old_nodes.pop_front()
+	old_nodes.append(node)
+
+#Checks if the node was already used
+func is_node_old(node: SearchNode) -> bool:
+	for old_node in old_nodes:
+		if node.get_instance_id() == old_node.get_instance_id():
+			return true
+	return false
