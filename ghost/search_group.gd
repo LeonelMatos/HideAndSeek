@@ -21,7 +21,7 @@ var selected_nodes: Array[SearchNode] = []
 var old_nodes: Array[SearchNode] = []
 
 #Lenght of array/memory of old_nodes
-var old_nodes_len: int = 3
+var old_nodes_len: int = 4
 
 #Gets all the names of all search_nodes in an array
 func get_nodes_name(group: Array[SearchNode]) -> Array[String]:
@@ -106,7 +106,7 @@ func _on_ghost_on_searching_change(value):
 	if active_search == true:
 		refresh_search_area()
 	else:
-		game_manager.set_director_debug_text(active_search, "off")
+		game_manager.set_director_debug_text(active_search, 0)
 
 #Adds the node to the old_nodes array of previously used.
 #Works as a circular buffer FIFO

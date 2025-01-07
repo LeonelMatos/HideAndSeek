@@ -47,6 +47,12 @@ var player_inside: bool = false
 
 @onready var interactionArea = $InteractionFindArea
 
+#Edge case if ghost is stuck in same position, tracking
+var last_position: Vector3 = Vector3.ZERO
+var stuck_timer: Timer
+##Time dedicated to decide if the ghost is stuck in position
+@export var stuck_detection: float = 5.0
+
 func _ready():
 	nav.set_physics_process(false)
 	#called on first frame, loads on next to avoid conflict
@@ -85,7 +91,7 @@ func _physics_process(delta):
 		velocity = velocity.lerp(direction * speed, accel * delta)
 		if !nav.is_target_reached():
 			move_and_slide()
-		look_at(nav.target_position)
+		look_at(nav.target_position) #BUG weird position looking up/down
 	else:
 		look_at_player(direction)
 
@@ -175,6 +181,7 @@ func ghost_appear_slide(direction: int) -> void:
 func _on_target_reached():
 	print("Ghost: reached target position")
 	###TODO finish the behaviour
+	nav.target_position = director.get_next_node_pos()
 
 #Nav SearchNode reached option.
 #TODO Will look around to search for the player

@@ -10,7 +10,7 @@ signal debug
 @export var nav_region: NavigationRegion3D
 
 #main timer of the game
-var timer
+var timer: Timer
 var aux_timer
 @export var timerLabel: Label
 # sound hint of the last 5 seconds
@@ -77,11 +77,10 @@ func _process(_delta):
 	var time:int = int(timer.get_time_left())
 	if time > 60:
 		#BUG integer,float division error?
-		timerLabel.text = "Time left: %02d:%02d" % [int(time/60), time % 60]
+		timerLabel.text = "Time left: %02d:%02d" % [int(floor(time/60)), int(time % 60)]
 	else:
 		timerLabel.text = "Time left: %0.0fs" % time
 		
-	
 	#Countdown close to the end starts audio hint
 	if timer.time_left <= 15 and timer.time_left > 0 and !countdownsfx_lock:
 		print("GameManager: Countdown audio")
@@ -104,8 +103,12 @@ func _input(event):
 		var debug_group = $"../UserInteface/DEBUG"
 		debug_mode = not debug_mode
 		debug_group.visible = not debug_group.visible
-		
 		debug.emit()
+	if event.is_action_pressed("pause_timer"):
+		if !timer.is_stopped():
+			timer.stop()
+		else:
+			timer.start()
 
 
 # GAMEPLAY
