@@ -15,6 +15,8 @@ class_name SearchArea
 
 func _ready():
 	assert(director)
+	mesh = get_node("DebugMesh") as MeshInstance3D
+	mesh.visible = false
 
 func set_range(rng: float) -> void:
 	search_range = rng
@@ -29,7 +31,7 @@ func find_nodes() -> Array[SearchNode]:
 	var distance: float
 	#Initial value is search_range, then increments by 10 each attempt
 	var rng: float = search_range
-	while searchNodes.is_empty():
+	while searchNodes.size() < 2:
 		for node in director.get_children():
 			if node is SearchNode:
 				node_pos = node.global_transform.origin
@@ -42,7 +44,6 @@ func find_nodes() -> Array[SearchNode]:
 # Enable/Disable debug view of the search area
 func _on_game_manager_debug():
 	if director.active_search:
-		mesh = get_node("DebugMesh") as MeshInstance3D
 		assert(mesh)
 		if !mesh.visible:
 			mesh.scale = Vector3(search_range, search_range, search_range)

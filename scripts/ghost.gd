@@ -50,7 +50,7 @@ var player_inside: bool = false
 #Edge case if ghost is stuck in same position, tracking
 var last_position: Vector3 = Vector3.ZERO
 var stuck_timer: Timer
-##Time dedicated to decide if the ghost is stuck in position
+##Time before deciding if the ghost is stuck in position
 @export var stuck_detection: float = 5.0
 
 func _ready():
@@ -143,15 +143,16 @@ func _on_main_timer_timeout():
 		await ghost_appear_slide(1)
 		nav_region.enabled = true
 		print("Ghost: spawned searching ghost @%s" % position)
-		
 		#Nav search. First movement direction, nav will keep going on _on_target_reached
 		if !ready_nav:
 			printerr("Ghost: navigation not ready when defining target")
 		nav.target_position = director.get_random_node_pos()
+		init_stuck_timer()
 		
 	else: #is hiding this new timer
 		#Stops searching
 		nav_region.enabled = false
+		stop_stuck_timer()
 		get_node("SlideAppear").play()
 		await ghost_appear_slide(-1)
 		spawn_ghost(0) #TODO update difficulty
@@ -174,7 +175,7 @@ func ghost_appear_slide(direction: int) -> void:
 	collision.disabled = false
 	nav.set_physics_process(true)
 
-#Nav aux functions
+#NAV AUX FUNCTIONS---
 
 #Signal from nav agent when reached search node.
 #Handles the ghost's behavior on how to proceed
@@ -202,3 +203,39 @@ func move_to_next_node() -> void:
 
 func _on_game_manager_debug():
 	nav.debug_enabled = not nav.debug_enabled
+
+#---
+#EDGE CASE: GHOST STUCK---
+
+#Edge case to detect if ghost is stuck. Setup and Starts the timer
+func init_stuck_timer():
+	if stuck_timer:#Check for duplicate timer not killed. Timer will be killed
+		stuck_timer.queue_free()
+	stuck_timer = Timer.new()
+	stuck_timer.wait_time = stuck_detection
+	stuck_timer.one_shot = false #Repeats
+	stuck_timer.connect("timeout", Callable(self, "_on_stuck_timer_timeout"))
+	add_child(stuck_timer)
+	stuck_timer.start()
+
+#Stops and clears the stuck timer when not needed
+func stop_stuck_timer():
+	if stuck_timer and stuck_timer.is_inside_tree():
+		stuck_timer.stop()
+		stuck_timer.queue_free()
+		stuck_timer = null
+
+#End of timer on stuck position. Will check if stuck each stuck_detection time
+func _on_stuck_timer_timeout():
+	if is_ghost_stuck():
+		printerr("Ghost: ghost hasn't moved for ", stuck_detection, "s. Changing path")
+		nav.target_position = director.get_next_node_pos()
+
+#Checks if the ghost's position hasn't changed
+func is_ghost_stuck() -> bool:
+	if global_position.distance_to(last_position) < 0.1:
+		return true
+	last_position = global_position
+	return false
+
+#---

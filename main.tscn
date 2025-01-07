@@ -87,7 +87,6 @@
 [ext_resource type="Script" path="res://ghost/search_group.gd" id="69_1lcn1"]
 [ext_resource type="PackedScene" uid="uid://baitq3eec7wof" path="res://ghost/search_node.tscn" id="69_ao50q"]
 [ext_resource type="Script" path="res://ghost/search_area.gd" id="72_yvmt7"]
-[ext_resource type="Material" uid="uid://stkhsbt1bwhm" path="res://ghost/debug_material.material" id="73_loo4w"]
 [ext_resource type="PackedScene" uid="uid://duq8cbtqofq3" path="res://models/trees/old/old_tree.glb" id="74_kiqv1"]
 [ext_resource type="PackedScene" uid="uid://dr2ihmxn4rk5m" path="res://models/light/lightpost1/Street_Lamp_1.glb" id="80_7x4sr"]
 [ext_resource type="Shader" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="81_c7hg5"]
@@ -11626,8 +11625,15 @@ volumetric_fog_sky_affect = 0.7
 volumetric_fog_temporal_reprojection_enabled = false
 adjustment_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t3a1x"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(1, 1, 1, 0.313726)
+albedo_texture = ExtResource("11_4afd3")
+emission = Color(0.753984, 0.753984, 0.753984, 1)
+
 [sub_resource type="SphereMesh" id="SphereMesh_km1mp"]
-material = ExtResource("73_loo4w")
+material = SubResource("StandardMaterial3D_t3a1x")
 radius = 1.0
 height = 2.0
 

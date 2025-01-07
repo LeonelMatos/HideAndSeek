@@ -21,7 +21,7 @@ var selected_nodes: Array[SearchNode] = []
 var old_nodes: Array[SearchNode] = []
 
 #Lenght of array/memory of old_nodes
-var old_nodes_len: int = 4
+var old_nodes_len: int = 6
 
 #Gets all the names of all search_nodes in an array
 func get_nodes_name(group: Array[SearchNode]) -> Array[String]:
@@ -81,8 +81,13 @@ func get_next_node_pos() -> Vector3:
 			return node.global_position
 		attempt += 1
 	#There aren't valid new nodes, falling back to previous used node
-	printerr("No valid new node found. Backtracking to a random old node")
+	printerr("No valid new node found. Expanding search ")
 	var fall_node: SearchNode = selected_nodes[randi_range(0, selected_nodes.size()-1)]
+	while !is_node_old(fall_node):
+		#fucking stupid TODO fix this
+		#known BUG: ghost goes back and forth on the same two nodes without others selected
+		#Must expand search area when all nodes belong to old_nodes
+		pass
 	add_old_node(fall_node)
 	return fall_node.global_position
 
