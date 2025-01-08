@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://2jc6m28vbdhf"]
+[gd_scene load_steps=11 format=3 uid="uid://2jc6m28vbdhf"]
 
 [ext_resource type="Script" path="res://scripts/ghost.gd" id="1_owvo8"]
 [ext_resource type="PackedScene" uid="uid://mmpjci7pw1ji" path="res://models/ghost/uploads_files_4359958_Demon.glb" id="2_vi3or"]
@@ -16,6 +16,8 @@ radius = 0.45
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vfvfr"]
 size = Vector3(5, 6, 15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x80qv"]
 
 [node name="Ghost" type="CharacterBody3D"]
 axis_lock_angular_x = true
@@ -59,6 +61,11 @@ shape = SubResource("BoxShape3D_vfvfr")
 
 [node name="HeartBeatSFX" type="AudioStreamPlayer" parent="Heartbeat"]
 stream = ExtResource("4_dfquc")
+
+[node name="DetectionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+shape = SubResource("BoxShape3D_x80qv")
 
 [connection signal="on_searching_change" from="." to="Heartbeat" method="_on_ghost_on_searching_change"]
 [connection signal="body_entered" from="InteractionFindArea" to="." method="_on_3d_body_entered"]

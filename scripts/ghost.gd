@@ -30,7 +30,12 @@ var spawn_locations = [
 ]
 
 ## Distance at which the player is close to the ghost
-var close_distance: float = 4.0
+@export var close_distance: float = 10.0:
+	set(x): close_distance = maxf(0,x)
+
+##Speed of turning to face the player when nearby
+@export var turn_speed: float = 5.0:
+	set(x): turn_speed = maxf(1.0,turn_speed)
 
 # Set the begin location of the ghost for seeking
 var starting_seek_position = [
@@ -83,18 +88,24 @@ func nav_setup():
 # Calculate ghost's navigation
 func _physics_process(delta):
 	var direction = Vector3()
-	#if ready_nav:
-		#nav.target_position = player.global_position
 	if is_searching:
 		direction = nav.get_next_path_position() - global_position
 		direction = direction.normalized()
 		velocity = velocity.lerp(direction * speed, accel * delta)
 		if !nav.is_target_reached():
 			move_and_slide()
-		var target_position_flat: Vector3 = Vector3(nav.target_position.x,global_position.y,nav.target_position.z)
-		look_at(target_position_flat) #BUG weird position looking up/down
+		if is_player_near():
+			look_at_player(delta)
+			#TODO Stop active searching when finding player
+			#Maybe stop the timer that refreshes the search nodes
+			#And start it when ghost loses the player
+			nav.target_position = player.global_position
+		else:
+			look_at_target()
+	#Not searching
 	else:
-		look_at_player(direction)
+		if is_player_near():
+			look_at_player(delta)
 
 # Moves the ghost to a random spawn
 # args: difficulty from 0 to spawn_location's number of sub-arrays
@@ -109,14 +120,21 @@ func spawn_ghost(difficulty: int):
 	interactionArea.monitoring = true
 	print("Spawned ghost @%s diff %d" % [rand_position, difficulty])
 
-# Ghost looks at player when he's near (broken)
-func look_at_player(direction: Vector3) -> void:
-	#TODO Rotate the ghost if player is near
+func look_at_target():
+	var target_position_flat: Vector3 = Vector3(nav.target_position.x,global_position.y,nav.target_position.z)
+	look_at(target_position_flat)
+
+# Ghost looks at player when he's near
+func look_at_player(delta) -> void:
+	if is_player_near():
+		var player_position_flat: Vector3 = Vector3(player.global_position.x,global_position.y,player.global_position.z)
+		var player_direction: Vector3 = (player_position_flat - global_position).normalized()
+		rotation.y = lerp_angle(rotation.y, atan2(-player_direction.x, -player_direction.z), turn_speed * delta)
+
+func is_player_near() -> bool:
 	if position.distance_to(player.position) <= close_distance:
-		direction = player.position.normalized()
-		direction.y = 0
-		#rotation.y = lerp_angle(rotation.y, atan2(direction.x, direction.z), delta * 10.0)
-		#BUG fix this shit
+		return true
+	return false
 
 # Trigger box of ghost area3D node with collided body (player)
 func _on_3d_body_entered(coll_body):
