@@ -146,7 +146,7 @@ func _on_main_timer_timeout():
 		#Nav search. First movement direction, nav will keep going on _on_target_reached
 		if !ready_nav:
 			printerr("Ghost: navigation not ready when defining target")
-		nav.target_position = director.get_random_node_pos()
+		nav.target_position = director.get_first_node_pos()
 		init_stuck_timer()
 		
 	else: #is hiding this new timer
@@ -186,6 +186,8 @@ func _on_target_reached():
 
 #Nav SearchNode reached option.
 #TODO Will look around to search for the player
+#Only when outside (more search space, less time wasted on closed spaces)
+#Use !player_inside
 func look_around_on_search() -> void:
 	pass
 

@@ -20,8 +20,10 @@ var selected_nodes: Array[SearchNode] = []
 #Stores old nodes that were previously used by navigation. Memory of 3
 var old_nodes: Array[SearchNode] = []
 
-#Lenght of array/memory of old_nodes
-var old_nodes_len: int = 6
+##Lenght of array/memory of old_nodes. 
+##Less nodes means there will be more repeated searches.
+##More means will run out of nodes to reach.
+@export var old_nodes_len: int = 8
 
 #Gets all the names of all search_nodes in an array
 func get_nodes_name(group: Array[SearchNode]) -> Array[String]:
@@ -41,8 +43,7 @@ func _ready():
 	#TODO hide debug nodes before entering runtime maybe
 	for child in get_children():
 		if child is SearchNode:
-			child.visible = false 
-	#search_area.set_range(search_range)
+			child.visible = false
 	refresh_search_area()
 
 #TODO maybe refresh only when the ghost finished arriving at the previous/current node
@@ -53,11 +54,19 @@ func refresh_search_area() -> void:
 		game_manager.set_director_debug_text(active_search, selected_nodes.size())
 		await get_tree().create_timer(refresh_time).timeout
 
+#Returns a random node from all nodes
+func get_first_node_pos() -> Vector3:
+	var rnd: int = randi_range(0, get_child_count())
+	var node: SearchNode = get_child(rnd) as SearchNode
+	return node.global_position
+
 #Returns a random node from the selected search nodes
+#Note that it returns a random from within distance, not all
 func get_random_node_pos() -> Vector3:
 	if selected_nodes.is_empty():
 		printerr("Group: Can't select random node because selected_nodes is empty")
 		return Vector3.ZERO
+	#BUG second random after get_nodes in search area already shuffles the selected nodes
 	var rnd = randi_range(0, selected_nodes.size()-1)
 	#print("Group: Selected random node: ", rnd)
 	add_old_node(selected_nodes[rnd])
@@ -74,20 +83,17 @@ func get_next_node_pos() -> Vector3:
 	var max_attempts: int = selected_nodes.size()
 	var attempt: int = 0
 	while attempt < max_attempts:
-		var rnd: int = randi_range(0,selected_nodes.size()-1)
-		var node: SearchNode = selected_nodes[rnd]
+		#Won't use random. Doing by n attempt will not repeat same node like rnd does
+		#var rnd: int = randi_range(0,selected_nodes.size()-1)
+		var node: SearchNode = selected_nodes[attempt]
 		if !is_node_old(node):
 			add_old_node(node)
 			return node.global_position
 		attempt += 1
-	#There aren't valid new nodes, falling back to previous used node
+	#There aren't valid new nodes, --falling back to previous used node--
 	printerr("No valid new node found. Expanding search ")
+	#Just picks one old. Bad choice, I want to expand the range
 	var fall_node: SearchNode = selected_nodes[randi_range(0, selected_nodes.size()-1)]
-	while !is_node_old(fall_node):
-		#fucking stupid TODO fix this
-		#known BUG: ghost goes back and forth on the same two nodes without others selected
-		#Must expand search area when all nodes belong to old_nodes
-		pass
 	add_old_node(fall_node)
 	return fall_node.global_position
 
