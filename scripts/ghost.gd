@@ -91,7 +91,8 @@ func _physics_process(delta):
 		velocity = velocity.lerp(direction * speed, accel * delta)
 		if !nav.is_target_reached():
 			move_and_slide()
-		look_at(nav.target_position) #BUG weird position looking up/down
+		var target_position_flat: Vector3 = Vector3(nav.target_position.x,global_position.y,nav.target_position.z)
+		look_at(target_position_flat) #BUG weird position looking up/down
 	else:
 		look_at_player(direction)
 

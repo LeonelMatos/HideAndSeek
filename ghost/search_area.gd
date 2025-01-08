@@ -11,7 +11,7 @@ class_name SearchArea
 ## Range of the ghost's search, must be greater than 0
 @export_range(1,50,1,"or_greater") var search_range: float = 10:
 	set(value): 
-		search_range = maxf(1,value)
+		search_range = maxf(1,value) 
 
 ##Minimum of nodes accepted to return the selected nodes.
 ##If number of search nodes found is less, we increase the search area to find more.
@@ -47,6 +47,7 @@ func find_nodes() -> Array[SearchNode]:
 	#Initial value is search_range, then increments by 10 each attempt
 	var rng: float = search_range
 	while searchNodes.size() < min_nodes_accepted:
+		mesh.scale = Vector3(rng, rng, rng)
 		for node in director.get_children():
 			if node is SearchNode:
 				node_pos = node.global_transform.origin
@@ -61,11 +62,9 @@ func find_nodes() -> Array[SearchNode]:
 
 # Enable/Disable debug view of the search area
 func _on_game_manager_debug():
-	if director.active_search:
-		assert(mesh)
-		if !mesh.visible:
-			mesh.scale = Vector3(search_range, search_range, search_range)
-			mesh.visible = true
-			print("Correctly set the mesh scale")
-		else:
-			mesh.visible = false
+	assert(mesh)
+	if mesh.visible:
+		mesh.visible = false
+	else:
+		mesh.scale = Vector3(search_range, search_range, search_range)
+		mesh.visible = true
