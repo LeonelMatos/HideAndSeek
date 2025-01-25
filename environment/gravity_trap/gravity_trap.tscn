@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://vb4ts0egu0fe"]
+
+[ext_resource type="Shader" path="res://environment/gravity_trap/ripple_effect.gdshader" id="1_67fre"]
+[ext_resource type="Script" path="res://environment/gravity_trap/camera_reference.gd" id="2_pe4tp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_phxm3"]
+render_priority = 0
+shader = ExtResource("1_67fre")
+shader_parameter/frequency = 4.0
+shader_parameter/amplitude = 2.0
+shader_parameter/ripple_rate = 5.0
+shader_parameter/fade_start = 10.0
+shader_parameter/fade_end = 30.0
+shader_parameter/camera_position = null
+
+[sub_resource type="SphereMesh" id="SphereMesh_opync"]
+lightmap_size_hint = Vector2i(33, 17)
+material = SubResource("ShaderMaterial_phxm3")
+uv2_padding = 5.68
+radius = 1.0
+height = 2.0
+
+[node name="GravityTrap" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_opync")
+script = ExtResource("2_pe4tp")
