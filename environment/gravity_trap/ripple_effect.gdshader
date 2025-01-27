@@ -1,32 +1,37 @@
 shader_type spatial;
 render_mode unshaded;
 
-// Ripple effect uniforms
-uniform float frequency: hint_range(0, 15, 0.01) = 4.0;
-uniform float amplitude: hint_range(0, 5, 0.1) = 3.0;
-uniform float ripple_rate: hint_range(0, 20.0, 1) = 5.0;
 
-// Fading distance control
-uniform float fade_start: hint_range(0, 50, 1) = 10.0;
-uniform float fade_end: hint_range(0, 100, 1) = 30.0;
+// Handles the concentric ripples
+uniform float frequency: hint_range(0, 15, 0.01) = 1.0;
+uniform float amplitude: hint_range(0, 3, 0.1) = 2.0;
+uniform float ripple_rate : hint_range(0, 20.0, 1) = 5;
+uniform float blending : hint_range(0.0, 1.0, 0.01) = 1.0;
 
-// Camera position (passed from script)
-uniform vec3 camera_position;
+// Handles the waves themselves
+uniform float wave_amplitude: hint_range(0.001, 0.1, 0.001) = 0.05;
+uniform float wave_frequency: hint_range(0, 15, 0.01) = 4;
 
-varying vec3 frag_world_position;
+uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap, repeat_disable;
 
-void vertex() {
-    frag_world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+vec2 wave(vec2 uv, float time) {
+    return vec2(
+        uv.x + sin(uv.y * wave_frequency + time) * wave_amplitude,
+        uv.y + sin(uv.x * wave_frequency + time) * wave_amplitude
+    );
 }
 
 void fragment() {
-    // Calculate distance from the camera to the world position
-    float camera_distance = length(frag_world_position - camera_position);
-
-    // Calculate fade factor based on camera distance
-    float fade_factor = clamp(1.0 - smoothstep(fade_start, fade_end, camera_distance), 0.0, 1.0);
-
-    // Debug visualization
-    ALBEDO = vec3(camera_distance / fade_end); // Optional: Visualize normalized camera distance
-    ALPHA = fade_factor; // Apply fade effect
+	vec2 screen_pixel_size = 1.0 / VIEWPORT_SIZE;
+	vec2 center_position = -1.0 + 2.0 * UV;
+	float center_distance = length(center_position);
+	
+	float ripple = sin(center_distance * -frequency * PI + ripple_rate * TIME) * amplitude / (center_distance + 1.0);
+	
+	vec2 uv = FRAGCOORD.xy * screen_pixel_size + (center_position/center_distance) * ripple * wave_amplitude;
+	vec2 background_wave = wave(uv, TIME);
+	vec4 background_texture = texture(SCREEN_TEXTURE, background_wave) * sqrt(amplitude);
+	
+	ALBEDO = background_texture.rgb;
+	ALPHA = blending;
 }
