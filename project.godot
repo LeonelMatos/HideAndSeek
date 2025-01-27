@@ -24,7 +24,6 @@ SimpleGrass="*res://addons/simplegrasstextured/singleton.tscn"
 
 [display]
 
-window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
 
 [dotnet]

@@ -40,4 +40,3 @@ func vignette_by_distance(enable: bool, distance: float) -> void:
 		var intensity_factor = pow(normalized_distance, 3)
 		var alpha = lerp(max_alpha, min_alpha, intensity_factor)
 		shader_material.set_shader_parameter("MainAlpha", alpha)
-		print("Vignette alpha set to: ", alpha)
