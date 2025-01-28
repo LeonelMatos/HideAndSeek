@@ -4,7 +4,7 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_yoepv"]
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="CharacterBody3D" type="CharacterBody3D" groups=["Player"]]
 collision_layer = 511
 collision_mask = 3
 platform_wall_layers = 1

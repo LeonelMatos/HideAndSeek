@@ -61,10 +61,11 @@ func find_nodes() -> Array[SearchNode]:
 	return searchNodes
 
 # Enable/Disable debug view of the search area
-func _on_game_manager_debug():
+#NOTE updated to also receive status of debug, may cause unhandled errors
+func _on_game_manager_debug(status: bool):
 	assert(mesh)
-	if mesh.visible:
-		mesh.visible = false
-	else:
+	if status:
 		mesh.scale = Vector3(search_range, search_range, search_range)
 		mesh.visible = true
+	else:
+		mesh.visible = false

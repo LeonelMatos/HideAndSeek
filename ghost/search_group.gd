@@ -98,10 +98,11 @@ func get_next_node_pos() -> Vector3:
 	return fall_node.global_position
 
 #Signal from gamemanager
-func _on_game_manager_debug():
+#NOTE updated to also receive status of debug, may cause unhandled errors
+func _on_game_manager_debug(status: bool):
 	for child in get_children():
 		if child is SearchNode:
-			child.visible = not child.visible
+			child.visible = status
 
 #Converts an array of strings to a string. With optional separator
 func array_to_string(arr: Array[String], separator: String = "\n") -> String:

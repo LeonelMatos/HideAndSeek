@@ -1,10 +1,11 @@
 extends Node
+class_name GameManager
 
 #Check to show debug tools in the game, fps counter, game version...
 var debug_mode: bool = false
 
 #sends the current state of debug to other scripts
-signal debug
+signal debug(status: bool)
 
 @onready var player = $"../Player"
 @export var nav_region: NavigationRegion3D
@@ -103,7 +104,8 @@ func _input(event):
 		var debug_group = $"../UserInteface/DEBUG"
 		debug_mode = not debug_mode
 		debug_group.visible = not debug_group.visible
-		debug.emit()
+		#debug.emit()
+		emit_signal("debug", debug_mode)
 	if event.is_action_pressed("pause_timer"):
 		if !timer.is_stopped():
 			timer.stop()

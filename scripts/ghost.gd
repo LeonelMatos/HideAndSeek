@@ -222,8 +222,9 @@ func wait_on_search() -> void:
 func move_to_next_node() -> void:
 	nav.target_position = director.get_next_node_pos()
 
-func _on_game_manager_debug():
-	nav.debug_enabled = not nav.debug_enabled
+#NOTE updated to also receive status of debug, may cause unhandled errors
+func _on_game_manager_debug(status: bool):
+	nav.debug_enabled = status
 
 #---
 #EDGE CASE: GHOST STUCK---
