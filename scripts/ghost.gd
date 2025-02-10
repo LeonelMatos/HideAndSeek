@@ -2,12 +2,12 @@ extends CharacterBody3D
 
 signal ghost_found
 
-@export var player: Player
+@onready var player: Player
 
 #Navigation
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
 @export var nav_region: NavigationRegion3D
-@export var director: GhostDirector
+@export var director: EnemyDirector
 
 var ready_nav: bool = false
 
@@ -64,6 +64,7 @@ func _ready():
 	call_deferred("nav_setup")
 	randomize() #seed
 	spawn_ghost(0) #TODO update difficulty
+	player = get_tree().get_first_node_in_group("Player")
 
 func _process(_delta):
 	#if player_inside: #TODO temporary. Goto _process_physics for real
@@ -260,4 +261,3 @@ func is_ghost_stuck() -> bool:
 	last_position = global_position
 	return false
 
-#---

@@ -1,5 +1,5 @@
 extends Node
-class_name GhostDirector
+class_name EnemyDirector
 
 ##Used of debug mode
 @export var game_manager: Node
