@@ -32,6 +32,7 @@ var ghost_found_lst: Array = [ \
 "Ghost found" \
 	 ]
 
+#TODO Deprecated
 var find_lst: Array = [ \
 	"Find the ghost", \
 	"Look for the soul", \

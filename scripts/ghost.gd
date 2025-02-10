@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Enemy
 
 signal ghost_found
 
