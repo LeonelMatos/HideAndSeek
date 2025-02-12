@@ -52,14 +52,6 @@ func set_director_debug_text(active_search: bool, nodes: int = 0) -> void:
 	ghostdirector_debug_text = "active_search %s \n \
 	Active search_nodes: %d" % [active_search, nodes]
 
-#Converts an array of strings to a string. With optional separator
-#TODO Useless now
-func array_to_string(arr: Array[String], separator: String = "\n") -> String:
-	var s = ""
-	for i in arr:
-		s += String(i) + separator
-	return s
-
 func _ready():
 	if !timerLabel:
 		printerr("GameManager: timerLabel not defined in the inspector")
@@ -112,7 +104,6 @@ func _input(event):
 		else:
 			timer.start()
 
-
 # GAMEPLAY
 
 #timer
@@ -128,7 +119,6 @@ func _on_main_timer_timeout():
 	nav_region.enabled = not nav_region.enabled
 	timer.wait_time = timer_time
 	timer.start()
-
 
 #NOTE add recently added addons on obsidian
 

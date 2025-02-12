@@ -3,14 +3,11 @@ extends Label
 # Declares which turn is, find=false/hide=true, then alternates
 #Next time the function will be called will go from find to hide, so
 #it's already set on true
-var game_turn: bool = true
+var game_turn: bool = false
 
 func _ready():
 	#await text_fade_out("Find the ghost")
 	pass
-
-func _on_ghost_found():
-	await text_fade_out(ghost_found_lst.pick_random())
 
 func _on_main_timer_timeout():
 	if game_turn:
@@ -32,6 +29,7 @@ var ghost_found_lst: Array = [ \
 "Ghost found" \
 	 ]
 
+#TODO Deprecated
 var find_lst: Array = [ \
 	"Find the ghost", \
 	"Look for the soul", \

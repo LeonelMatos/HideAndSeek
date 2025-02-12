@@ -3,7 +3,7 @@ extends Node3D
 class_name SearchArea
 
 ## Ghost Director
-@export var director: GhostDirector
+@export var director: EnemyDirector
 
 ## Debug sphere of the ghost's range
 @onready var mesh: MeshInstance3D
@@ -26,7 +26,7 @@ class_name SearchArea
 		max_nodes_accepted = maxi(1,value)
 
 func _ready():
-	assert(director)
+	director = get_parent().director
 	mesh = get_node("DebugMesh") as MeshInstance3D
 	mesh.visible = false
 	randomize()

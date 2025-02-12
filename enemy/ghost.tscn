@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://2jc6m28vbdhf"]
 
-[ext_resource type="Script" path="res://scripts/ghost.gd" id="1_owvo8"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_owvo8"]
 [ext_resource type="PackedScene" uid="uid://mmpjci7pw1ji" path="res://models/ghost/uploads_files_4359958_Demon.glb" id="2_vi3or"]
 [ext_resource type="AudioStream" uid="uid://bcixxtvoxhijn" path="res://sfx/ghost_slideoff.wav" id="3_y3qwy"]
 [ext_resource type="AudioStream" uid="uid://cqjuqf05pe8pd" path="res://sfx/heart_beat.wav" id="4_dfquc"]
