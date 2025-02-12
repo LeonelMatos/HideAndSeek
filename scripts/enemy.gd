@@ -65,10 +65,10 @@ func nav_setup():
 	nav.set_physics_process(true)
 	nav.target_position = player.global_position
 	ready_nav = true
-	# Connect the signal of target reached to the ghost
+	# Connect the signal of target reached to the enemy
 	nav.connect("target_reached", Callable(self, "_on_target_reached"))
 
-# Calculate ghost's navigation
+# Calculate enemy's navigation
 func _physics_process(delta):
 	var direction = Vector3()
 	if is_searching:
@@ -81,7 +81,7 @@ func _physics_process(delta):
 			look_at_player(delta)
 			#TODO Stop active searching when finding player
 			#Maybe stop the timer that refreshes the search nodes
-			#And start it when ghost loses the player
+			#And start it when enemy loses the player
 			nav.target_position = player.global_position
 		else:
 			look_at_target()
@@ -118,7 +118,7 @@ func look_at_player(delta) -> void:
 func is_player_near() -> bool:
 	return position.distance_to(player.position) <= close_distance
 
-# Trigger box of ghost area3D node with collided body (player)
+# Trigger box of enemy area3D node with collided body (player)
 func _on_3d_body_entered(coll_body):
 	if coll_body is Player:
 		player_inside = true
@@ -141,7 +141,7 @@ func enemy_appear_slide(direction: int) -> void:
 	if !is_searching:
 		pass
 	if absi(direction) != 1:
-		printerr("Ghost: value direction should only be -1 or 1")
+		printerr("Enemy: value direction should only be -1 or 1")
 		return
 	var collision = get_node("CollisionShape3D")
 	collision.disabled = true
@@ -159,7 +159,7 @@ func enemy_appear_slide(direction: int) -> void:
 # NAVIGATION/PLAYER_SEARCH AUX FUNCTIONS
 
 #Signal from nav agent when reached search node.
-#Handles the ghost's behavior on how to proceed
+#Handles the enemy's behavior on how to proceed
 func _on_target_reached():
 	print("Enemy: reached target position")
 	###TODO finish the behaviour
@@ -191,7 +191,7 @@ func _on_game_manager_debug(status: bool):
 
 # EDGE CASE: ENEMY STUCK
 
-#Edge case to detect if ghost is stuck. Setup and Starts the timer
+#Edge case to detect if enemy is stuck. Setup and Starts the timer
 func init_stuck_timer():
 	if stuck_timer:
 		stuck_timer.queue_free()
@@ -221,3 +221,4 @@ func is_enemy_stuck() -> bool:
 		return true
 	last_position = global_position
 	return false
+
