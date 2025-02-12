@@ -120,6 +120,3 @@ func _on_main_timer_timeout():
 	timer.wait_time = timer_time
 	timer.start()
 
-#NOTE add recently added addons on obsidian
-
-
