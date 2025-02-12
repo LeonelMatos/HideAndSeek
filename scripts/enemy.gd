@@ -221,4 +221,3 @@ func is_enemy_stuck() -> bool:
 		return true
 	last_position = global_position
 	return false
-
