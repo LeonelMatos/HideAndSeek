@@ -25,6 +25,9 @@ var old_nodes: Array[SearchNode] = []
 ##More means will run out of nodes to reach.
 @export var old_nodes_len: int = 8
 
+func set_active_search(value: bool):
+	active_search = value
+
 #Gets all the names of all search_nodes in an array
 func get_nodes_name(group: Array[SearchNode]) -> Array[String]:
 	var arr: Array[String] = []
@@ -50,7 +53,7 @@ func _ready():
 func refresh_search_area() -> void:
 	while active_search:
 		selected_nodes = search_area.find_nodes()
-		#print("Updated search area. Found ", selected_nodes.size(), " nodes")
+		print("Updated search area. Found ", selected_nodes.size(), " nodes")
 		game_manager.set_director_debug_text(active_search, selected_nodes.size())
 		await get_tree().create_timer(refresh_time).timeout
 
@@ -112,7 +115,7 @@ func array_to_string(arr: Array[String], separator: String = "\n") -> String:
 	return s
 
 #Call from ghost to tell when it's searching
-func _on_ghost_on_searching_change(value):
+func _on_searching_change(value):
 	active_search = value
 	#Refreshes and saves the selected nodes
 	if active_search == true:

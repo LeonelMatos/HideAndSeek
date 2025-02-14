@@ -69,6 +69,7 @@ stream = ExtResource("4_dfquc")
 shape = SubResource("BoxShape3D_x80qv")
 
 [connection signal="on_searching_change" from="." to="Heartbeat" method="_on_ghost_on_searching_change"]
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_target_reached"]
 [connection signal="body_entered" from="InteractionFindArea" to="." method="_on_3d_body_entered"]
 [connection signal="body_exited" from="InteractionFindArea" to="." method="_on_3d_body_exited"]
 [connection signal="body_entered" from="Heartbeat" to="Heartbeat" method="_on_body_entered"]

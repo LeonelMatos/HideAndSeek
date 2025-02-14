@@ -45,10 +45,11 @@ signal on_searching_change(value: bool)
 @onready var slide_sound: AudioStreamPlayer3D = $SlideAppear
 
 # State management
-var is_searching: bool = true:
+var is_searching: bool = false:
 	set(value):
 		is_searching = value
 		on_searching_change.emit(value)
+		director.set_active_search(value)
 
 var ready_nav: bool = false
 var player_inside: bool = false
@@ -61,6 +62,7 @@ func _ready() -> void:
 	nav.set_physics_process(false)
 	call_deferred("initialize_navigation")
 	randomize()
+	on_searching_change.connect(director._on_searching_change)
 	spawn_enemy()
 
 func _physics_process(delta: float) -> void:
@@ -78,7 +80,7 @@ func initialize_navigation() -> void:
 	nav.set_physics_process(true)
 	nav.target_position = player.global_position
 	ready_nav = true
-	nav.target_reached.connect(_on_navigation_target_reached)
+	nav.target_reached.connect(_on_target_reached)
 
 func handle_movement(delta: float) -> void:
 	"""Main movement handling function"""
@@ -105,6 +107,9 @@ func face_target(target: Vector3, delta: float) -> void:
 	var flat_target := Vector3(target.x, global_position.y, target.z)
 	var target_direction := (flat_target - global_position).normalized()
 	rotation.y = lerp_angle(rotation.y, atan2(-target_direction.x, -target_direction.z), turn_speed * delta)
+
+func move_to_next_node() -> void:
+	nav.target_position = director.get_next_node_pos()
 #endregion
 
 #region Spawn & Appearance
@@ -119,7 +124,9 @@ func spawn_enemy() -> void:
 	slide_sound.play()
 	await animate_spawn(1.0)
 	
+	is_searching = true
 	nav_region.enabled = true
+	
 	nav.target_position = director.get_first_node_pos()
 	initialize_stuck_detection()
 
@@ -163,7 +170,7 @@ func _on_3d_body_exited(body: Node3D) -> void:
 
 #region State Management
 #--------------------------------------------------------------------------------
-func _on_search_timer_timeout() -> void:
+func _on_main_timer_timeout() -> void:
 	"""Handle search state timeout"""
 	is_searching = false
 	if not is_searching:
@@ -206,7 +213,7 @@ func is_stuck() -> bool:
 
 #region Navigation Callbacks
 #--------------------------------------------------------------------------------
-func _on_navigation_target_reached() -> void:
+func _on_target_reached() -> void:
 	"""Handle navigation target reached event"""
 	print_debug("Navigation target reached")
 	nav.target_position = director.get_next_node_pos()
