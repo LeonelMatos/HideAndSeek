@@ -72,3 +72,6 @@ func slide_cam_fov(positive: int) -> void:
 	for n in 20:
 			camera.fov += 0.5 * positive
 			await get_tree().create_timer(0.005).timeout
+
+func get_cam_fov() -> float:
+	return camera.fov

@@ -12066,11 +12066,11 @@ radius = 2.0
 
 [node name="Node3D" type="Node3D"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("fps_display", "nav_region", "timerLabel") groups=["GameManager"]]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("debug_info", "debug_group", "fps_display", "nav_region", "timerLabel") groups=["GameManager"]]
 script = ExtResource("1_g0nwb")
-debug_mode = null
+debug_info = NodePath("../UserInteface/DEBUG/DebugInfo")
+debug_group = NodePath("../UserInteface/DEBUG")
 fps_display = NodePath("../UserInteface/DEBUG/FPS")
-timer_time = null
 nav_region = NodePath("../NavigationRegion3D")
 timerLabel = NodePath("../UserInteface/TimerLabel")
 
@@ -20706,19 +20706,18 @@ duration = 3.0
 [node name="DEBUG" type="CanvasGroup" parent="UserInteface"]
 visible = false
 
-[node name="Version" type="Label" parent="UserInteface/DEBUG"]
-anchors_preset = 3
-anchor_left = 1.0
+[node name="DebugInfo" type="Label" parent="UserInteface/DEBUG"]
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1042.0
-offset_top = 625.0
-offset_right = 1152.0
-offset_bottom = 648.0
-grow_horizontal = 0
+offset_top = 648.0
+offset_right = 110.0
+offset_bottom = 671.0
 grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
 label_settings = SubResource("LabelSettings_jnxhf")
+metadata/_edit_use_anchors_ = true
 
 [node name="FPS" type="Label" parent="UserInteface/DEBUG"]
 offset_right = 110.0

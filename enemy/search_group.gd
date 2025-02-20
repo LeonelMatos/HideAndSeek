@@ -59,7 +59,7 @@ func refresh_search_area() -> void:
 
 #Returns a random node from all nodes
 func get_first_node_pos() -> Vector3:
-	var rnd: int = randi_range(0, get_child_count())
+	var rnd: int = randi_range(0, get_child_count()-1)
 	var node: SearchNode = get_child(rnd) as SearchNode
 	return node.global_position
 
