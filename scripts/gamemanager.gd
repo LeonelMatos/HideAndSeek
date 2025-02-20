@@ -1,33 +1,72 @@
 extends Node
 class_name GameManager
 
-#Check to show debug tools in the game, fps counter, game version...
-var debug_mode: bool = false
-
-#sends the current state of debug to other scripts
+# Sends the current state of debug to other scripts
 signal debug(status: bool)
 
-@onready var player = $"../Player"
-@export var nav_region: NavigationRegion3D
+signal set_countdownsfx
 
-#main timer of the game
-var timer: Timer
-var aux_timer
+## Group: Debug-----------------------------------------------------------------
+@export_group("Debug")
+## Check to show debug tools in-game
+@export var debug_mode: bool = false
+## Display on-screen the FPS
+@export var fps_display: Label
+
+## Group: Timer-------------------------------------------------------------
+@export_group("Timer")
+## [b]Game time[/b] [i](default: 1m30s)[/i].
+@export var timer_time: int = 90
+## Enables the navigation when the timer is working.
+@export var nav_region: NavigationRegion3D #TODO check if deprecated
+## UI label to show the remaining time.
 @export var timerLabel: Label
+
+# Main timer of the game
+var timer: Timer
+# Temporary to allow showing the starting splash screens
+var aux_timer: Timer
 # sound hint of the last 5 seconds
 var countdownSound
 # bool lock for the countdown sound hint, because of _process()
 var countdownsfx_lock: bool = false
-signal set_countdownsfx
 
-@export var timer_time: int = 90
+@onready var player: Player = get_tree().get_first_node_in_group("Player") as Player:
+	set(value):
+		if !value:
+			push_error("Missing player node in scene")
+		player = value
 
-# FRAMEWORK/DEBUG/GAME CONFIG
+#region Lifecycle Methods
+#-------------------------------------------------------------------------------
+func _ready():
+	if !timerLabel:
+		printerr("GameManager: timerLabel not defined in the inspector")
+	init_timer()
 
+func _process(_delta):
+	var time: float = timer.get_time_left()
+	if debug_mode:
+		fps_display.text = fps_to_string()
+		printGameVersion()
+	if time > 60:
+		#BUG integer,float division error?
+		timerLabel.text = "Time left: %02d:%02d" % [int(floor(time/60)), int(time % 60)]
+	else:
+		timerLabel.text = "Time left: %0.0fs" % time
+		
+	#Countdown close to the end starts audio hint
+	if timer.time_left <= 15 and timer.time_left > 0 and !countdownsfx_lock:
+		print("GameManager: Countdown audio")
+		countdownsfx_lock = true
+		set_countdownsfx.emit()
+#endregion
+
+#region Debug Config
+#-------------------------------------------------------------------------------
 var ghostdirector_debug_text: String = "ghostDirector not updated"
 
 #Writes to screen the debug game version.
-#TODO Remove before final build
 func printGameVersion():
 	var game_version = ProjectSettings.get_setting("application/config/version")
 	var resolution = DisplayServer.window_get_size() + Vector2i(2,2)
@@ -52,42 +91,15 @@ func set_director_debug_text(active_search: bool, nodes: int = 0) -> void:
 	ghostdirector_debug_text = "active_search %s \n \
 	Active search_nodes: %d" % [active_search, nodes]
 
-func _ready():
-	if !timerLabel:
-		printerr("GameManager: timerLabel not defined in the inspector")
-	
-	timer = get_node("MainTimer")
-	aux_timer = get_node("AuxTimer")
-	timerLabel.visible = false
-	
-	countdownSound = get_node("CountdownSound")
+func fps_to_string():
+	str(Performance.get_monitor(Performance.TIME_FPS)) + " FPS"
+#endregion
 
-func _process(_delta):
-	if debug_mode:
-		$"../UserInteface/DEBUG/FPS".text = str(Performance.get_monitor(Performance.TIME_FPS)) + " FPS"
-		printGameVersion()
-	
-	var time:int = int(timer.get_time_left())
-	if time > 60:
-		#BUG integer,float division error?
-		timerLabel.text = "Time left: %02d:%02d" % [int(floor(time/60)), int(time % 60)]
-	else:
-		timerLabel.text = "Time left: %0.0fs" % time
-		
-	#Countdown close to the end starts audio hint
-	if timer.time_left <= 15 and timer.time_left > 0 and !countdownsfx_lock:
-		print("GameManager: Countdown audio")
-		countdownsfx_lock = true
-		set_countdownsfx.emit()
-
-#Receives signal from countdownsfx telling it's done and unlocks
-func _on_countdown_sound_finished_sfx():
-	countdownsfx_lock = false
-
+#region Input
+#-------------------------------------------------------------------------------
 func _input(event):
 	# Handler to switch window mode WINDOW/FULLSCREEN w/ F11 ALT+ENTER
 	if event.is_action_pressed("set_fullscreen"):
-		print("GameManager: set fullscreen")
 		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		else:
@@ -103,13 +115,25 @@ func _input(event):
 			timer.stop()
 		else:
 			timer.start()
+#endregion
 
-# GAMEPLAY
+#region Timer
+#-------------------------------------------------------------------------------
+func init_timer():
+	timer = get_node("MainTimer")
+	aux_timer = get_node("AuxTimer")
+	timerLabel.visible = false
+	countdownSound = get_node("CountdownSound")
 
-#timer
+func print_timer():
+	if time > 60:
+		#BUG integer,float division error?
+		timerLabel.text = "Time left: %02d:%02d" % [int(floor(time/60)), int(time % 60)]
+	else:
+		timerLabel.text = "Time left: %0.0fs" % time
+
 #AuxTimer starts on run to wait after the splashScreen
 # and starts the MainTimer when the game actually starts
-
 func _on_aux_timer_timeout():
 	timer.wait_time = timer_time
 	timer.start()
@@ -120,3 +144,7 @@ func _on_main_timer_timeout():
 	timer.wait_time = timer_time
 	timer.start()
 
+#Receives signal from countdownsfx telling it's done and unlocks
+func _on_countdown_sound_finished_sfx():
+	countdownsfx_lock = false
+#endregion
