@@ -12071,6 +12071,7 @@ script = ExtResource("1_g0nwb")
 debug_info = NodePath("../UserInteface/DEBUG/DebugInfo")
 debug_group = NodePath("../UserInteface/DEBUG")
 fps_display = NodePath("../UserInteface/DEBUG/FPS")
+debug_note = "Near end of 0.0.3"
 nav_region = NodePath("../NavigationRegion3D")
 timerLabel = NodePath("../UserInteface/TimerLabel")
 

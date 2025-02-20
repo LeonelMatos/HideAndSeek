@@ -24,6 +24,7 @@ signal set_countdownsfx
 @export_subgroup("Extra")
 ## Display FPS color. [i](Default: dark_green)[/i].
 @export_color_no_alpha var fps_color: Color = Color.DARK_GREEN
+@export var debug_note: String
 
 ## Group: Timer-------------------------------------------------------------
 @export_group("Timer")
@@ -81,12 +82,14 @@ var enemy_director_debug: String = "Enemy Director not updated"
 #Writes to screen the debug game version.
 func print_debug_info():
 	debug_info.text = """\
-	hdnsk version {version}
-	Resolution: {resolution} | FOV: {fov}
+	 hdnsk version {version}
 	{fps} FPS (Process Time: {process_time}ms)
-	Memory: {memory_used} MB / {memory_max} MB
-	VRAM: {vram_used} MB | Draw Calls: {draw_calls} | Objects: {obj_rendered}
-	{enemy_director_debug}
+	 Resolution: {resolution} | FOV: {fov}
+	 Memory: {memory_used} MB / {memory_max} MB
+	 VRAM: {vram_used} MB | Draw Calls: {draw_calls} | Objects: {obj_rendered}
+	 {enemy_director_debug}
+	 {debug_note}
+	
 	""".format({
 		"version": cached_debug_info,
 		"resolution": get_resolution(),
@@ -98,12 +101,12 @@ func print_debug_info():
 		"vram_used": "%.1f" % [Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED)/1_000_000],
 		"draw_calls": Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME),
 		"obj_rendered": Performance.get_monitor(Performance.RENDER_TOTAL_OBJECTS_IN_FRAME),
-		"enemy_director_debug": enemy_director_debug
+		"enemy_director_debug": enemy_director_debug,
+		"debug_note": debug_note
 	})
 
 func set_director_debug_text(active_search: bool, nodes: int = 0) -> void:
-	enemy_director_debug = "active_search %s \n \
-	Active search_nodes: %d" % [active_search, nodes]
+	enemy_director_debug = "Enemy Search: %s | Nodes: %d" % [active_search, nodes]
 
 func fps_to_string() -> String:
 	return str(Performance.get_monitor(Performance.TIME_FPS)) + " FPS"
