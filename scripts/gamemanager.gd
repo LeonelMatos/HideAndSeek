@@ -24,7 +24,7 @@ signal set_countdownsfx
 @export_subgroup("Extra")
 ## Display FPS color. [i](Default: dark_green)[/i].
 @export_color_no_alpha var fps_color: Color = Color.DARK_GREEN
-@export var debug_note: String
+@export_multiline var debug_note: String
 
 ## Group: Timer-------------------------------------------------------------
 @export_group("Timer")
@@ -111,8 +111,9 @@ func set_director_debug_text(active_search: bool, nodes: int = 0) -> void:
 func fps_to_string() -> String:
 	return str(Performance.get_monitor(Performance.TIME_FPS)) + " FPS"
 
+#Incorrectly applicated, not working. Learn more about Themes on Label
 func set_fps_color(color: Color) -> void:
-	fps_display.add_theme_color_override("fps_color", color)
+	fps_display.add_theme_color_override("font_color", color)
 #endregion
 
 #region Input

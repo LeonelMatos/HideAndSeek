@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://baitq3eec7wof"]
 
-[ext_resource type="Script" path="res://enemy/search_node.gd" id="1_07bh2"]
-[ext_resource type="Material" uid="uid://stkhsbt1bwhm" path="res://enemy/debug_material.material" id="2_pgakj"]
+[ext_resource type="Script" path="res://scripts/enemy/search_node.gd" id="1_07bh2"]
+[ext_resource type="Material" uid="uid://stkhsbt1bwhm" path="res://scripts/enemy/debug_material.material" id="2_pgakj"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_aow5m"]
 material = ExtResource("2_pgakj")
