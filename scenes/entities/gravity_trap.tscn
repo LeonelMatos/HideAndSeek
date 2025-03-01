@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://vb4ts0egu0fe"]
+
+[ext_resource type="Shader" path="res://shaders/pulling_gravity.gdshader" id="1_e52p5"]
+[ext_resource type="Script" path="res://scripts/entities/gravity_trap.gd" id="1_yy6do"]
+[ext_resource type="AudioStream" uid="uid://bqf3we3vv84ld" path="res://assets/audio/sfx/gravity_pull.wav" id="3_2u4qr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fs15m"]
+render_priority = 0
+shader = ExtResource("1_e52p5")
+shader_parameter/black_hole_radius = 0.02
+shader_parameter/distortion_strength = 2.0
+shader_parameter/glitch_intensity = 0.5
+shader_parameter/time_scale = 1.0
+shader_parameter/noise_scale = 2.0
+shader_parameter/noise_intensity = 0.5
+shader_parameter/enable_glitch = false
+shader_parameter/outer_fade_start = 0.0
+shader_parameter/outer_fade_end = 0.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_7jndu"]
+material = SubResource("ShaderMaterial_fs15m")
+size = Vector2(3, 3)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lhoic"]
+height = 5.0
+radius = 10.0
+
+[node name="GravityTrap" type="Node3D" groups=["Trap"]]
+script = ExtResource("1_yy6do")
+pull_force = 6.0
+
+[node name="GravityMesh" type="MeshInstance3D" parent="."]
+visibility_range_end = 20.0
+mesh = SubResource("QuadMesh_7jndu")
+
+[node name="ProximitySFX" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_2u4qr")
+attenuation_model = 2
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 257
+monitorable = false
+gravity_point_unit_distance = 5.0
+gravity = 11.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_lhoic")
+
+[connection signal="finished" from="ProximitySFX" to="." method="_on_proximity_sfx_finished"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

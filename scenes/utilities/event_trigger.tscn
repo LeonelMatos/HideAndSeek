@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvyjxlt8n3n6e"]
+
+[ext_resource type="Script" path="res://scripts/core/events/event_trigger.gd" id="1_p8lr3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0pswl"]
+size = Vector3(5, 3, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3uhf1"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.313726)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fmprh"]
+material = SubResource("StandardMaterial3D_3uhf1")
+size = Vector3(5, 3, 5)
+
+[node name="EventTrigger" type="Area3D"]
+monitorable = false
+script = ExtResource("1_p8lr3")
+chance = 1.0
+facing_threshold = 0.2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_0pswl")
+
+[node name="DebugMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mesh = SubResource("BoxMesh_fmprh")
+
+[node name="EventName" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+billboard = 1
+font_size = 40
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,7 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://blyq7xd3xcuss"]
-
-[ext_resource type="Texture2D" uid="uid://bbdwaaavpfhl0" path="res://textures/debug/invisible.png" id="1_j3h0w"]
-
-[resource]
-transparency = 1
-albedo_texture = ExtResource("1_j3h0w")

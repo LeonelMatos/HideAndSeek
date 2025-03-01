@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://d2qtf1ogly3ph"]
+
+[ext_resource type="Texture2D" uid="uid://boxlu13irisdd" path="res://assets/textures/buildings/ground_tiles.png" id="1_qra31"]
+[ext_resource type="Texture2D" uid="uid://c05mi73aw0kta" path="res://assets/textures/buildings/ground_tiles_h.png" id="2_2uk0a"]
+
+[resource]
+albedo_texture = ExtResource("1_qra31")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_2uk0a")

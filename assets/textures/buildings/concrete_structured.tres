@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dyxw04kvtnnwd"]
+
+[ext_resource type="Texture2D" uid="uid://br7kolmc3oscv" path="res://assets/textures/buildings/concrete_structured.png" id="1_7m7b3"]
+[ext_resource type="Texture2D" uid="uid://c37sy4bmvmy5h" path="res://assets/textures/buildings/concrete_structured_h.png" id="2_6wnwx"]
+
+[resource]
+albedo_texture = ExtResource("1_7m7b3")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_6wnwx")

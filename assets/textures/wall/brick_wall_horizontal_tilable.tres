@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://yq51g4ryf0ru"]
+
+[ext_resource type="Texture2D" uid="uid://c845e0h24mp52" path="res://assets/textures/wall/brick_wall_horizontal_tilable.png" id="1_wse3e"]
+[ext_resource type="Texture2D" uid="uid://dxly114lbf3m7" path="res://assets/textures/wall/brick_wall_horizontal_tilable_h.png" id="2_x3dxp"]
+
+[resource]
+albedo_texture = ExtResource("1_wse3e")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_x3dxp")

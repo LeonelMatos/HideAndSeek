@@ -1,0 +1,10 @@
+[gd_resource type="ORMMaterial3D" load_steps=3 format=3 uid="uid://dkxr63u5usmyi"]
+
+[ext_resource type="Texture2D" uid="uid://ydy3f4rwmrjb" path="res://assets/textures/floor/cobble_mossy.png" id="1_4ka4q"]
+[ext_resource type="Texture2D" uid="uid://bum7tq28s62jl" path="res://assets/textures/floor/cobble_mossy_n.png" id="2_yv7ro"]
+
+[resource]
+albedo_texture = ExtResource("1_4ka4q")
+normal_enabled = true
+normal_scale = 2.4
+normal_texture = ExtResource("2_yv7ro")

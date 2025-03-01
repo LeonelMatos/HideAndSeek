@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0gu7a3isoo7w"]
+
+[ext_resource type="Script" path="res://scripts/environment/sound_env_trigger.gd" id="1_1an3n"]
+[ext_resource type="Texture2D" uid="uid://d4l3fobxi0xlt" path="res://assets/textures/prototype_textures/green/texture_04.png" id="1_lk3kg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ltc86"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wcerh"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.196078)
+albedo_texture = ExtResource("1_lk3kg")
+
+[sub_resource type="BoxMesh" id="BoxMesh_sxomh"]
+material = SubResource("StandardMaterial3D_wcerh")
+
+[node name="SoundEnvTrigger" type="Node3D"]
+script = ExtResource("1_1an3n")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_ltc86")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("BoxMesh_sxomh")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

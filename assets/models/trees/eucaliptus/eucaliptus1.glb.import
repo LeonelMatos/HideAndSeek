@@ -1,0 +1,58 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://n8nib5ml26j1"
+path="res://.godot/imported/eucaliptus1.glb-22d2ff2a4b2c3d2f35296f7f4c9dd6f4.scn"
+
+[deps]
+
+source_file="res://assets/models/trees/eucaliptus/eucaliptus1.glb"
+dest_files=["res://.godot/imported/eucaliptus1.glb-22d2ff2a4b2c3d2f35296f7f4c9dd6f4.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=false
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"materials": {
+"pine branch": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/trees/eucaliptus/pine branch.tres"
+}
+},
+"meshes": {
+"eucaliptus1_tree": {
+"generate/lightmap_uv": 0,
+"generate/lods": 1,
+"generate/shadow_meshes": 1,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": false,
+"save_to_file/make_streamable": "",
+"save_to_file/path": ""
+}
+},
+"nodes": {
+"PATH:tree": {
+"occluder/simplification_distance": 0.42
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1
