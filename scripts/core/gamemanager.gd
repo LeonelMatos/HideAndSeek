@@ -60,6 +60,7 @@ static var cached_debug_info: Dictionary = {
 #region Lifecycle Methods
 #-------------------------------------------------------------------------------
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if !timerLabel:
 		printerr("GameManager: timerLabel not defined in the inspector")
 	set_fps_color(fps_color)
@@ -127,6 +128,13 @@ func _input(event):
 	if event.is_action_pressed("pause_timer"):
 		switch_timer()
 #endregions
+
+func _unhandled_input(event):
+	#Captures the mouse onto the game / mouse visible
+	if event is InputEventMouseButton:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if event.is_action_pressed("ui_cancel"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 #region Timer
 #-------------------------------------------------------------------------------
