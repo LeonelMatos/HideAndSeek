@@ -7,6 +7,8 @@ signal on_searching_change(value: bool)
 ## Group: Navigation ----------------------------------------------------------
 @export_group("Navigation")
 @export var nav_region: NavigationRegion3D
+## The [b]Enemy Director[/b] is responsible of controlling this enemy's navigation
+## and search functions.
 @export var director: EnemyDirector
 
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
@@ -19,20 +21,26 @@ signal on_searching_change(value: bool)
 ## Rotation speed when facing nearby player
 @export var turn_speed: float = 5.0:
 	set(value): turn_speed = maxf(1.0, value)
-## Initial spawn positions for enemy
+
+## Group: Spawn ----------------------------------------------------------------
+@export_group("Spawn")
+## Possible initial spawn positions list for this enemy using [Vector3] positions.
 @export var starting_seek_positions: Array[Vector3] = [
 	Vector3(70, 1, 60), 
 	Vector3(-17, 1, -10)
 ]
+## Accepted threshold distance from the player's position to spawn the enemy
+##from the [param starting_seek_positions] array.
+@export var spawn_distance: int = 10
 
 ## Group: Movement ------------------------------------------------------------
 @export_group("Movement")
 ## [b]Base movement speed[/b] in meters/second [i](default: 4.0)[/i]
 ## [color=yellow]Adjust based on enemy type
 @export var speed: float = 4.0
-## Movement acceleration
+## Movement acceleration.
 @export var acceleration: float = 10.0
-## Time [i](in seconds)[/i] before detecting stuck state
+## Time [i](in seconds)[/i] before detecting stuck state.
 @export var stuck_detection_time: float = 5.0
 
 # Node references
@@ -118,9 +126,17 @@ func spawn_enemy() -> void:
 	"""Spawn enemy at random starting position"""
 	assert(starting_seek_positions.size() > 0, "Need at least one starting position")
 	assert(director != null, "Missing EnemyDirector reference")
-	var spawn_index: int = randi() % starting_seek_positions.size()
-	global_position = starting_seek_positions[spawn_index] + Vector3.DOWN * 5
+	var spawn_index: int
+	var player_position: Vector3 = player.global_position
+	var valid_spawn: bool = false
 	
+	while !valid_spawn:
+		spawn_index = randi() % starting_seek_positions.size()
+		var spawn_candidate = starting_seek_positions[spawn_index] + Vector3.DOWN * 5
+		if player_position.distance_to(spawn_candidate) > spawn_distance:
+			global_position = spawn_candidate
+			valid_spawn = true
+			
 	slide_sound.play()
 	await animate_spawn(1.0)
 	

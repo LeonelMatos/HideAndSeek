@@ -13,10 +13,10 @@ class_name Player
 	set(value): JUMP_VELOCITY = maxf(0, value)
 
 ##Value considered for the player to be below the level.
-@export var below_map_y: float = -10
+@export var below_map_y: float = -40
 
 ##Variable speed set at walking speed, changeable to running and back
-var SPEED = DEFAULT_SPEED
+var SPEED: float = DEFAULT_SPEED
 
 ##State of camera FOV if expanded or not due to running
 ## true if expanded for running, false if default
@@ -110,4 +110,5 @@ func get_cam_fov() -> float:
 func handle_below_map() -> void:
 	if global_position.y < below_map_y:
 		global_position.y = 50.0
+		velocity = Vector3.ZERO
 		print("Player fell from the map. Check for out of bounds leak on ", global_position)
