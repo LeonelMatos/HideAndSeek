@@ -12,6 +12,9 @@ class_name Player
 @export var JUMP_VELOCITY: float = 6.0:
 	set(value): JUMP_VELOCITY = maxf(0, value)
 
+##Value considered for the player to be below the level.
+@export var below_map_y: float = -10
+
 ##Variable speed set at walking speed, changeable to running and back
 var SPEED = DEFAULT_SPEED
 
@@ -19,8 +22,8 @@ var SPEED = DEFAULT_SPEED
 ## true if expanded for running, false if default
 var is_running: bool = false:
 	set(value):
-		value = is_running
-		if(value): await slide_cam_fov(1)
+		is_running = value
+		if(is_running): await slide_cam_fov(1)
 		else: await slide_cam_fov(-1)
 
 ## Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -32,21 +35,20 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * 2
 @export var neck: Node3D:
 	set(value): 
 		if(!value): push_error("Player: Missing player neck in Player node")
-		neck = value
+		else: neck = value
 ## Main scene's camera for player.
-@export var camera: Camera3D:
-	set(value): 
-		if(!value): push_error("Player: Missing camera in Player node")
-		neck = value
+@onready var camera := $Pivot/Camera3D
 
 #region Lifecycle Methods
 #--------------------------------------------------------------------------------
+
 func _unhandled_input(event):
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
 			mouse_look(event)
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	
 
 func _physics_process(delta):
 	handle_gravity(delta)
@@ -56,10 +58,12 @@ func _physics_process(delta):
 		disable_run()
 	handle_movement()
 	move_and_slide()
+	handle_below_map()
 #endregion
 
 #region Movement Behaviour
 #-------------------------------------------------------------------------------
+
 func mouse_look(event: InputEventMouseMotion) -> void:
 	neck.rotate_y(-event.relative.x * 0.003)
 	camera.rotate_x(-event.relative.y * 0.003)
@@ -89,7 +93,7 @@ func handle_movement() -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+#endregion
 #region Camera Extra Controls
 #-------------------------------------------------------------------------------
 func slide_cam_fov(positive: int) -> void:
@@ -100,3 +104,10 @@ func slide_cam_fov(positive: int) -> void:
 func get_cam_fov() -> float:
 	return camera.fov
 #endregion
+
+#region Edge Cases
+#-------------------------------------------------------------------------------
+func handle_below_map() -> void:
+	if global_position.y < below_map_y:
+		global_position.y = 50.0
+		print("Player fell from the map. Check for out of bounds leak on ", global_position)
