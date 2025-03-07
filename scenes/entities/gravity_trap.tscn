@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://vb4ts0egu0fe"]
 
-[ext_resource type="Shader" path="res://shaders/pulling_gravity.gdshader" id="1_e52p5"]
-[ext_resource type="Script" path="res://scripts/entities/gravity_trap.gd" id="1_yy6do"]
+[ext_resource type="Shader" uid="uid://ttb2sk82rqxf" path="res://shaders/pulling_gravity.gdshader" id="1_e52p5"]
+[ext_resource type="Script" uid="uid://o15ble8fj8hi" path="res://scripts/entities/gravity_trap.gd" id="1_yy6do"]
 [ext_resource type="AudioStream" uid="uid://bqf3we3vv84ld" path="res://assets/audio/sfx/gravity_pull.wav" id="3_2u4qr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fs15m"]

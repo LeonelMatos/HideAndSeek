@@ -3,16 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccd606rhvips4"
-path.s3tc="res://.godot/imported/window.jpg-7309e524bedbb318234b6303a605b8c3.s3tc.ctex"
-metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
+valid=false
 
 [deps]
 
-source_file="res://textures/buildings/window.jpg"
-dest_files=["res://.godot/imported/window.jpg-7309e524bedbb318234b6303a605b8c3.s3tc.ctex"]
+source_file="res://assets/textures/buildings/window.jpg"
 
 [params]
 

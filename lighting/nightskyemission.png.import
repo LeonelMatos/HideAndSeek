@@ -3,16 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bx7ihkrray61j"
-path.s3tc="res://.godot/imported/nightskyemission.png-56ecfd06ff1720a752a89561fce0f745.s3tc.ctex"
-metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
+valid=false
 
 [deps]
 
-source_file="res://environment/nightskyemission.png"
-dest_files=["res://.godot/imported/nightskyemission.png-56ecfd06ff1720a752a89561fce0f745.s3tc.ctex"]
+source_file="res://lighting/nightskyemission.png"
 
 [params]
 

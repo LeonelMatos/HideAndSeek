@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cxqpgg8ax8bqv"]
 
-[ext_resource type="Script" path="res://scenes/boot_splash/demo_splash_screen_wizard/slides/slide_godot.gd" id="1_uihei"]
+[ext_resource type="Script" uid="uid://bw8w1gjh1y5nk" path="res://scenes/boot_splash/demo_splash_screen_wizard/slides/slide_godot.gd" id="1_uihei"]
 [ext_resource type="Texture2D" uid="uid://cnhi4do10thow" path="res://scenes/boot_splash/demo_splash_screen_wizard/assets/logo_vertical_monochrome_dark.svg" id="2_0b4hu"]
 [ext_resource type="Resource" uid="uid://dphiwpkixnobm" path="res://scenes/boot_splash/demo_splash_screen_wizard/transitions/fade_in.tres" id="2_2cxhs"]
 [ext_resource type="Resource" uid="uid://bt2wxjwarvrol" path="res://scenes/boot_splash/demo_splash_screen_wizard/transitions/fade_out.tres" id="3_g0x0d"]
@@ -62,8 +62,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v3h1w"]
 _data = {
-"RESET": SubResource("Animation_yhrdi"),
-"wiggle": SubResource("Animation_844dv")
+&"RESET": SubResource("Animation_yhrdi"),
+&"wiggle": SubResource("Animation_844dv")
 }
 
 [node name="SlideGodot" type="Control"]

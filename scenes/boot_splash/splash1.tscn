@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bwgqsg22jh16e"]
 
-[ext_resource type="Script" path="res://addons/splash_screen_wizard/splash_screen_slide.gd" id="1_2tgrb"]
+[ext_resource type="Script" uid="uid://djwykrvcffgns" path="res://addons/splash_screen_wizard/splash_screen_slide.gd" id="1_2tgrb"]
 [ext_resource type="FontFile" uid="uid://v77hdaq7pq2p" path="res://assets/fonts/PlayfairDisplay-VariableFont_wght.ttf" id="2_fxbm0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_itsv3"]

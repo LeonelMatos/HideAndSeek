@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://2jc6m28vbdhf"]
 
-[ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_owvo8"]
+[ext_resource type="Script" uid="uid://oeeeciai00v2" path="res://scripts/entities/enemy.gd" id="1_owvo8"]
 [ext_resource type="PackedScene" uid="uid://mmpjci7pw1ji" path="res://assets/models/ghost/uploads_files_4359958_Demon.glb" id="2_vi3or"]
 [ext_resource type="AudioStream" uid="uid://bcixxtvoxhijn" path="res://assets/audio/sfx/ghost_slideoff.wav" id="3_y3qwy"]
-[ext_resource type="Script" path="res://scripts/audio/heartbeatsfx.gd" id="4_uwc4r"]
+[ext_resource type="Script" uid="uid://hg6e3vdyri8m" path="res://scripts/audio/heartbeatsfx.gd" id="4_uwc4r"]
 [ext_resource type="AudioStream" uid="uid://cqjuqf05pe8pd" path="res://assets/audio/sfx/heart_beat.wav" id="5_stywm"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_y6jhl"]

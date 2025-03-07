@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dohvlsft3t7gf"]
 
-[ext_resource type="Script" path="res://addons/splash_screen_wizard/splash_screen_slide.gd" id="1_4f84i"]
+[ext_resource type="Script" uid="uid://djwykrvcffgns" path="res://addons/splash_screen_wizard/splash_screen_slide.gd" id="1_4f84i"]
 [ext_resource type="FontFile" uid="uid://dtjwe2kpno3a6" path="res://assets/fonts/AmaticSC-Bold.ttf" id="2_dtkiy"]
-[ext_resource type="Script" path="res://scripts/ui/objective.gd" id="3_0ndsg"]
+[ext_resource type="Script" uid="uid://jcpsm15x3wqb" path="res://scripts/ui/objective.gd" id="3_0ndsg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6nwf2"]
 font = ExtResource("2_dtkiy")

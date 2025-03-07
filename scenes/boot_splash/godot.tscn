@@ -1,7 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2yh0c7xgbgc2"]
 
-[ext_resource type="Script" path="res://addons/splash_screen_wizard/splash_screen_slide.gd" id="1_ftew0"]
-[ext_resource type="Texture2D" uid="uid://clhsadomd1l47" path="res://assets/textures/original-outline-horizontal-light.svg" id="2_ughdh"]
+[ext_resource type="Script" uid="uid://djwykrvcffgns" path="res://addons/splash_screen_wizard/splash_screen_slide.gd" id="1_ftew0"]
+
+[sub_resource type="Resource" id="Resource_s3rh8"]
+metadata/__load_path__ = "res://assets/textures/original-outline-horizontal-light.svg"
 
 [node name="Godot" type="Control"]
 layout_mode = 3
@@ -38,4 +40,4 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(320, 65)
-texture = ExtResource("2_ughdh")
+texture = SubResource("Resource_s3rh8")

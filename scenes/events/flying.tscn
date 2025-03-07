@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ciaob3ksy87bg"]
 
 [ext_resource type="PackedScene" uid="uid://mmpjci7pw1ji" path="res://assets/models/ghost/uploads_files_4359958_Demon.glb" id="1_bcntm"]
-[ext_resource type="Script" path="res://scripts/core/events/event.gd" id="1_xhamy"]
+[ext_resource type="Script" uid="uid://pirktt2bk8vc" path="res://scripts/core/events/event.gd" id="1_xhamy"]
 [ext_resource type="AudioStream" uid="uid://cj8yl1j2trjcb" path="res://assets/audio/sfx/wilhelm.wav" id="2_0rpmg"]
 
 [sub_resource type="Animation" id="Animation_d8lno"]
@@ -60,8 +60,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_42idx"]
 _data = {
-"RESET": SubResource("Animation_d8lno"),
-"flying_test": SubResource("Animation_nvfi3")
+&"RESET": SubResource("Animation_d8lno"),
+&"flying_test": SubResource("Animation_nvfi3")
 }
 
 [node name="Event" type="Node3D"]

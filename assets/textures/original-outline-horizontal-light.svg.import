@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://clhsadomd1l47"
-path="res://.godot/imported/original-outline-horizontal-light.svg-28ea2fa110540a019f801341e4d4cee4.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
-source_file="res://textures/original-outline-horizontal-light.svg"
-dest_files=["res://.godot/imported/original-outline-horizontal-light.svg-28ea2fa110540a019f801341e4d4cee4.ctex"]
+source_file="res://assets/textures/original-outline-horizontal-light.svg"
 
 [params]
 
