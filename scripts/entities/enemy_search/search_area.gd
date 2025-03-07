@@ -25,8 +25,17 @@ class_name SearchArea
 	set(value):
 		max_nodes_accepted = maxi(1,value)
 
+##[b]Length[/b] of array/memory of [param]old_nodes[/param]. 
+##[br]Less nodes means there will be more repeated searches.
+##[br]More means will run out of nodes to reach.
+@export var old_nodes_len: int = 8
+
+#Stores old nodes that were previously used by navigation. Memory of 3
+var old_nodes: Array[SearchNode] = []
+
 func _ready():
 	director = get_parent().director
+	assert(director, "SearchArea: could not find the enemy director")
 	mesh = get_node("DebugMesh") as MeshInstance3D
 	mesh.visible = false
 	randomize()
@@ -59,6 +68,24 @@ func find_nodes() -> Array[SearchNode]:
 		printerr("Search: Too many search nodes in this area. Please remove some at", origin)
 	searchNodes.shuffle() #Garantees randomness without tree structure
 	return searchNodes
+
+##Returns the name of the enemy from this search_area's parent
+func get_enemy_name() -> String:
+	return get_parent().name
+
+#Adds the node to the old_nodes array of previously used.
+#Works as a circular buffer FIFO
+func add_old_node(node: SearchNode) -> void:
+	if old_nodes.size() > old_nodes_len:
+		old_nodes.pop_front()
+	old_nodes.append(node)
+
+#Checks if the node was already used
+func is_node_old(node: SearchNode) -> bool:
+	for old_node in old_nodes:
+		if node.get_instance_id() == old_node.get_instance_id():
+			return true
+	return false
 
 # Enable/Disable debug view of the search area
 #NOTE updated to also receive status of debug, may cause unhandled errors

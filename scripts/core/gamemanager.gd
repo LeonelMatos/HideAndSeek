@@ -78,7 +78,10 @@ func _process(_delta):
 
 #region Debug Config
 #-------------------------------------------------------------------------------
-var enemy_director_debug: String = "Enemy Director not updated"
+var enemy_director_debug: String = "Enemy Director not updated":
+	set(value):
+		if value.is_empty() or !value: enemy_director_debug = "Enemy Director not updated"
+		else: enemy_director_debug = value
 
 #Writes to screen the debug game version.
 func print_debug_info():
@@ -106,13 +109,16 @@ func print_debug_info():
 		"debug_note": debug_note
 	})
 
-func set_director_debug_text(active_search: bool, nodes: int = 0) -> void:
-	enemy_director_debug = "Enemy Search: %s | Nodes: %d" % [active_search, nodes]
+func set_director_debug_text(current_enemies: int = 0) -> void:
+	if current_enemies == 0:
+		enemy_director_debug = "Active enemies searching: %d" % [current_enemies]
+	else:
+		enemy_director_debug = ""
 
 func fps_to_string() -> String:
 	return str(Performance.get_monitor(Performance.TIME_FPS)) + " FPS"
 
-#Incorrectly applicated, not working. Learn more about Themes on Label
+#BUG Incorrectly applicated, not working. Learn more about Themes on Label
 func set_fps_color(color: Color) -> void:
 	fps_display.add_theme_color_override("font_color", color)
 #endregion

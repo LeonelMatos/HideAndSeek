@@ -70,7 +70,7 @@
 [ext_resource type="Texture2D" uid="uid://jjo606awxgxk" path="res://assets/textures/debug/compass_elevation.png" id="68_uh8f7"]
 [ext_resource type="FontFile" uid="uid://dtjwe2kpno3a6" path="res://assets/fonts/AmaticSC-Bold.ttf" id="69_lbeoe"]
 [ext_resource type="Script" uid="uid://jcpsm15x3wqb" path="res://scripts/ui/objective.gd" id="70_k66fy"]
-[ext_resource type="Script" uid="uid://d3l2et8mkcgmu" path="res://scripts/entities/enemy_search/search_group.gd" id="71_l0n6i"]
+[ext_resource type="Script" uid="uid://d3l2et8mkcgmu" path="res://scripts/entities/enemy_search/search_director.gd" id="71_l0n6i"]
 [ext_resource type="PackedScene" uid="uid://baitq3eec7wof" path="res://scenes/utilities/search_node.tscn" id="72_ki2pl"]
 [ext_resource type="PackedScene" uid="uid://2jc6m28vbdhf" path="res://scenes/entities/ghost.tscn" id="73_40i3g"]
 [ext_resource type="Script" uid="uid://d2l6be2h123pa" path="res://scripts/entities/enemy_search/search_area.gd" id="74_5h720"]
@@ -20644,12 +20644,9 @@ light_energy = 8.931
 spot_range = 5.58554
 spot_angle = 67.2363
 
-[node name="EnemyDirector" type="Node" parent="." node_paths=PackedStringArray("game_manager", "search_area") groups=["Director"]]
+[node name="EnemyDirector" type="Node" parent="." node_paths=PackedStringArray("game_manager") groups=["Director"]]
 script = ExtResource("71_l0n6i")
 game_manager = NodePath("../GameManager")
-search_area = NodePath("../Ghost/SearchArea")
-refresh_time = 2.0
-old_nodes_len = 10
 
 [node name="SearchNode" parent="EnemyDirector" instance=ExtResource("72_ki2pl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.854305, 0.790493, -5.02228)
@@ -20765,10 +20762,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.5867, 0.79049, 40.9242)
 [node name="SearchNode14" parent="EnemyDirector" instance=ExtResource("72_ki2pl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.0648, 0.79049, 49.1929)
 
-[node name="Ghost" parent="." node_paths=PackedStringArray("nav_region", "director") instance=ExtResource("73_40i3g")]
+[node name="Ghost" parent="." node_paths=PackedStringArray("nav_region", "director", "search_area") instance=ExtResource("73_40i3g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.7527, 1, 0)
 nav_region = NodePath("../NavigationRegion3D")
 director = NodePath("../EnemyDirector")
+search_area = NodePath("SearchArea")
 
 [node name="SearchArea" type="Node3D" parent="Ghost" node_paths=PackedStringArray("director")]
 script = ExtResource("74_5h720")
@@ -20776,6 +20774,22 @@ director = NodePath("../../EnemyDirector")
 search_range = 20.0
 
 [node name="DebugMesh" type="MeshInstance3D" parent="Ghost/SearchArea"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+mesh = SubResource("SphereMesh_km1mp")
+
+[node name="Ghost2" parent="." node_paths=PackedStringArray("nav_region", "director", "search_area") instance=ExtResource("73_40i3g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.7527, 1, 0)
+nav_region = NodePath("../NavigationRegion3D")
+director = NodePath("../EnemyDirector")
+search_area = NodePath("SearchArea")
+
+[node name="SearchArea" type="Node3D" parent="Ghost2" node_paths=PackedStringArray("director")]
+script = ExtResource("74_5h720")
+director = NodePath("../../EnemyDirector")
+search_range = 20.0
+
+[node name="DebugMesh" type="MeshInstance3D" parent="Ghost2/SearchArea"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_km1mp")

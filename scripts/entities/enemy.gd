@@ -10,6 +10,8 @@ signal on_searching_change(value: bool)
 ## The [b]Enemy Director[/b] is responsible of controlling this enemy's navigation
 ## and search functions.
 @export var director: EnemyDirector
+#TODO add description to search_area
+@export var search_area: SearchArea
 
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
 
@@ -57,7 +59,8 @@ var is_searching: bool = false:
 	set(value):
 		is_searching = value
 		on_searching_change.emit(value)
-		director.set_active_search(value)
+		if !value:
+			director.remove_current_enemy(name)
 
 var ready_nav: bool = false
 var player_inside: bool = false
@@ -70,7 +73,6 @@ func _ready() -> void:
 	nav.set_physics_process(false)
 	call_deferred("initialize_navigation")
 	randomize()
-	on_searching_change.connect(director._on_searching_change)
 	spawn_enemy()
 
 func _physics_process(delta: float) -> void:
@@ -117,7 +119,7 @@ func face_target(target: Vector3, delta: float) -> void:
 	rotation.y = lerp_angle(rotation.y, atan2(-target_direction.x, -target_direction.z), turn_speed * delta)
 
 func move_to_next_node() -> void:
-	nav.target_position = director.get_next_node_pos()
+	nav.target_position = director.get_next_node_pos(search_area)
 #endregion
 
 #region Spawn & Appearance
@@ -217,7 +219,7 @@ func _on_stuck_timeout() -> void:
 	"""Handle stuck detection timeout"""
 	if is_stuck():
 		print_debug("Enemy stuck - recalculating path")
-		nav.target_position = director.get_next_node_pos()
+		nav.target_position = director.get_next_node_pos(search_area)
 
 func is_stuck() -> bool:
 	"""Check if enemy hasn't moved significantly"""
@@ -232,7 +234,7 @@ func is_stuck() -> bool:
 func _on_target_reached() -> void:
 	"""Handle navigation target reached event"""
 	print_debug("Navigation target reached")
-	nav.target_position = director.get_next_node_pos()
+	nav.target_position = director.get_next_node_pos(search_area)
 #endregion
 
 #region Game Logic
