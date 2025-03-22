@@ -12,6 +12,8 @@ class_name Player
 @export var JUMP_VELOCITY: float = 6.0:
 	set(value): JUMP_VELOCITY = maxf(0, value)
 
+@export var camera_sensitivity: float = 0.003
+
 ##Value considered for the player to be below the level.
 @export var below_map_y: float = -40
 
@@ -39,16 +41,23 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * 2
 ## Main scene's camera for player.
 @onready var camera := $Pivot/Camera3D
 
+@export var hand: Node3D
+
+## Group: Flashlight------------------------------------------------------------
+@export var flashlight: SpotLight3D
+
 #region Lifecycle Methods
-#--------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 
 func _unhandled_input(event):
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
 			mouse_look(event)
+			flashlight_handle(event)
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-	
+	if Input.is_action_just_pressed("toggle_flash"):
+		flashlight.toggle_flashlight()
 
 func _physics_process(delta):
 	handle_gravity(delta)
@@ -65,9 +74,15 @@ func _physics_process(delta):
 #-------------------------------------------------------------------------------
 
 func mouse_look(event: InputEventMouseMotion) -> void:
-	neck.rotate_y(-event.relative.x * 0.003)
-	camera.rotate_x(-event.relative.y * 0.003)
+	neck.rotate_y(-event.relative.x * camera_sensitivity)
+	camera.rotate_x(-event.relative.y * camera_sensitivity)
 	camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+
+func flashlight_handle(event: InputEventMouseMotion) -> void:
+	hand.rotate_y(-event.relative.x * camera_sensitivity)
+	flashlight.rotate_x(-event.relative.y * camera_sensitivity)
+	flashlight.rotation.x = clamp(flashlight.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+	
 
 func handle_gravity(delta: float) -> void:
 	if not is_on_floor():
@@ -103,6 +118,7 @@ func slide_cam_fov(positive: int) -> void:
 
 func get_cam_fov() -> float:
 	return camera.fov
+
 #endregion
 
 #region Edge Cases
