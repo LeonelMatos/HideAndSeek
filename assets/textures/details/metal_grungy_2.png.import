@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccd606rhvips4"
-path.s3tc="res://.godot/imported/window.jpg-827ecc25aa72dbe968c879fb70c75fa3.s3tc.ctex"
+uid="uid://cun3tk8i6gg10"
+path.s3tc="res://.godot/imported/metal_grungy_2.png-5710be74ba47f915f1ecc53941e5ded6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/buildings/window.jpg"
-dest_files=["res://.godot/imported/window.jpg-827ecc25aa72dbe968c879fb70c75fa3.s3tc.ctex"]
+source_file="res://assets/textures/details/metal_grungy_2.png"
+dest_files=["res://.godot/imported/metal_grungy_2.png-5710be74ba47f915f1ecc53941e5ded6.s3tc.ctex"]
 
 [params]
 

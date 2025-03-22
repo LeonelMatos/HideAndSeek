@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccd606rhvips4"
-path.s3tc="res://.godot/imported/window.jpg-827ecc25aa72dbe968c879fb70c75fa3.s3tc.ctex"
+uid="uid://c1x0mclqlwxyq"
+path.s3tc="res://.godot/imported/tree_backdrop_possible.png-d0226033f9c34d9764e39426dbcc7c57.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/buildings/window.jpg"
-dest_files=["res://.godot/imported/window.jpg-827ecc25aa72dbe968c879fb70c75fa3.s3tc.ctex"]
+source_file="res://assets/textures/environment/tree_backdrop_possible.png"
+dest_files=["res://.godot/imported/tree_backdrop_possible.png-d0226033f9c34d9764e39426dbcc7c57.s3tc.ctex"]
 
 [params]
 

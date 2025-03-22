@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://ckxetw0l0l8fp"]
+
+[ext_resource type="Texture2D" uid="uid://b38vwyp4p182i" path="res://assets/textures/details/metal_grungy.png" id="1_wwjjs"]
+[ext_resource type="Texture2D" uid="uid://cun3tk8i6gg10" path="res://assets/textures/details/metal_grungy_2.png" id="2_o5ki7"]
+
+[resource]
+albedo_texture = ExtResource("1_wwjjs")
+ao_enabled = true
+ao_light_affect = 0.5
+ao_texture = ExtResource("2_o5ki7")
