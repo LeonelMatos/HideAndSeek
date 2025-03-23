@@ -6749,11 +6749,11 @@
 }
 // brush 3
 {
-( 284 124 92 ) ( 284 112 92 ) ( 284 112 16 ) prototype_textures/dark/texture_03 0 0 0 1 1
+( 284 124 92 ) ( 284 112 92 ) ( 284 112 16 ) buildings/PaintedPlaster011_1K-PNG_Color 0 12 0 0.05 0.05
 ( 284 112 92 ) ( 288 112 92 ) ( 288 112 16 ) prototype_textures/dark/texture_03 0 0 0 1 1
 ( 288 112 16 ) ( 288 124 16 ) ( 284 124 16 ) prototype_textures/dark/texture_03 0 0 0 1 1
 ( 284 124 92 ) ( 288 124 92 ) ( 288 112 92 ) prototype_textures/dark/texture_03 0 0 0 1 1
-( 288 124 16 ) ( 288 124 92 ) ( 284 124 92 ) prototype_textures/dark/texture_03 0 0 0 1 1
+( 288 124 16 ) ( 288 124 92 ) ( 284 124 92 ) buildings/PaintedPlaster011_1K-PNG_Color 0 12 0 0.05 0.05
 ( 288 112 92 ) ( 288 124 92 ) ( 288 124 16 ) wall/Bricks046 8 0 0 0.06 0.06
 }
 // brush 4
@@ -6762,7 +6762,7 @@
 ( 288 120 88 ) ( 416 120 88 ) ( 416 120 16 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
 ( 416 120 16 ) ( 416 124 16 ) ( 288 124 16 ) prototype_textures/dark/texture_03 0 0 0 1 1
 ( 288 124 88 ) ( 416 124 88 ) ( 416 120 88 ) prototype_textures/dark/texture_03 0 0 0 1 1
-( 416 124 16 ) ( 416 124 88 ) ( 288 124 88 ) prototype_textures/dark/texture_03 0 0.8888889 0 1 0.94736844
+( 416 124 16 ) ( 416 124 88 ) ( 288 124 88 ) buildings/PaintedPlaster011_1K-PNG_Color 0 12 0 0.05 0.05
 ( 416 120 88 ) ( 416 124 88 ) ( 416 124 16 ) prototype_textures/dark/texture_03 0 0.8888889 0 1 0.94736844
 }
 // brush 5
@@ -6771,7 +6771,7 @@
 ( 416 120 92 ) ( 580 120 92 ) ( 580 120 16 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
 ( 580 120 16 ) ( 580 124 16 ) ( 416 124 16 ) prototype_textures/dark/texture_03 0 0 0 1 1
 ( 416 124 92 ) ( 580 124 92 ) ( 580 120 92 ) buildings/concrete35_r 0 0 0 0.05 0.05
-( 580 124 16 ) ( 580 124 92 ) ( 416 124 92 ) prototype_textures/dark/texture_03 0 0 0 1 1
+( 580 124 16 ) ( 580 124 92 ) ( 416 124 92 ) buildings/PaintedPlaster011_1K-PNG_Color 0 12 0 0.05 0.05
 ( 580 120 92 ) ( 580 124 92 ) ( 580 124 16 ) prototype_textures/dark/texture_03 0 0 0 1 1
 }
 // brush 6
@@ -6781,7 +6781,7 @@
 ( 132 156 16 ) ( 132 192 16 ) ( 128 192 16 ) prototype_textures/dark/texture_03 0 0 0 1 1
 ( 128 192 92 ) ( 132 192 92 ) ( 132 156 92 ) prototype_textures/dark/texture_03 0 0 0 1 1
 ( 132 192 16 ) ( 132 192 92 ) ( 128 192 92 ) wall/Bricks046 8 0 0 0.06 0.06
-( 132 156 92 ) ( 132 192 92 ) ( 132 192 16 ) prototype_textures/dark/texture_03 0 0 0 1 1
+( 132 156 92 ) ( 132 192 92 ) ( 132 192 16 ) wall/Bricks046 8 0 0 0.06 0.06
 }
 // brush 7
 {
@@ -6791,7 +6791,7 @@
 ( 176 108 16 ) ( 176 112 16 ) ( 132 156 16 ) prototype_textures/dark/texture_03 0 0 0 1 1
 ( 132 156 92 ) ( 176 112 92 ) ( 176 108 92 ) prototype_textures/dark/texture_03 0 0 0 1 1
 ( 132 156 16 ) ( 132 156 92 ) ( 128 156 92 ) prototype_textures/dark/texture_03 0 0 0 1 1
-( 176 112 16 ) ( 176 112 92 ) ( 132 156 92 ) prototype_textures/dark/texture_03 0 0 0 1 1
+( 176 112 16 ) ( 176 112 92 ) ( 132 156 92 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 176 108 92 ) ( 176 112 92 ) ( 176 112 16 ) prototype_textures/dark/texture_03 0 0 0 1 1
 }
 // brush 8
@@ -6801,7 +6801,7 @@
 ( 128 216 16 ) ( 128 192 16 ) ( 132 216 16 ) prototype_textures/dark/texture_06 160 200 0 1 1
 ( 132 192 40 ) ( 128 192 40 ) ( 132 216 40 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 132 216 16 ) ( 132 216 40 ) ( 128 216 16 ) prototype_textures/dark/texture_06 164 -80 0 1 1
-( 132 192 16 ) ( 132 192 40 ) ( 132 216 16 ) prototype_textures/dark/texture_06 -200 -80 0 1 1
+( 132 192 16 ) ( 132 192 40 ) ( 132 216 16 ) wall/Bricks046 8 0 0 0.06 0.06
 }
 // brush 9
 {
@@ -6810,7 +6810,7 @@
 ( 132 192 68 ) ( 132 216 68 ) ( 128 216 68 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 128 216 92 ) ( 132 216 92 ) ( 132 192 92 ) prototype_textures/dark/texture_06 160 200 0 1 1
 ( 132 216 68 ) ( 132 216 92 ) ( 128 216 92 ) prototype_textures/dark/texture_06 164 -80 0 1 1
-( 132 192 92 ) ( 132 216 92 ) ( 132 216 68 ) prototype_textures/dark/texture_06 -200 -80 0 1 1
+( 132 192 92 ) ( 132 216 92 ) ( 132 216 68 ) wall/Bricks046 8 0 0 0.06 0.06
 }
 // brush 10
 {
@@ -6819,7 +6819,7 @@
 ( 128 268 16 ) ( 128 244 16 ) ( 132 268 16 ) prototype_textures/dark/texture_06 160 252 0 1 1
 ( 132 244 40 ) ( 128 244 40 ) ( 132 268 40 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 132 268 16 ) ( 132 268 40 ) ( 128 268 16 ) prototype_textures/dark/texture_06 164 -80 0 1 1
-( 132 244 16 ) ( 132 244 40 ) ( 132 268 16 ) prototype_textures/dark/texture_06 -252 -80 0 1 1
+( 132 244 16 ) ( 132 244 40 ) ( 132 268 16 ) wall/Bricks046 8 0 0 0.06 0.06
 }
 // brush 11
 {
@@ -6828,7 +6828,7 @@
 ( 132 244 68 ) ( 132 268 68 ) ( 128 268 68 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 128 268 92 ) ( 132 268 92 ) ( 132 244 92 ) prototype_textures/dark/texture_06 160 252 0 1 1
 ( 132 268 68 ) ( 132 268 92 ) ( 128 268 92 ) prototype_textures/dark/texture_06 164 -80 0 1 1
-( 132 244 92 ) ( 132 268 92 ) ( 132 268 68 ) prototype_textures/dark/texture_06 -252 -80 0 1 1
+( 132 244 92 ) ( 132 268 92 ) ( 132 268 68 ) wall/Bricks046 8 0 0 0.06 0.06
 }
 // brush 12
 {
@@ -6837,7 +6837,7 @@
 ( 128 216 16 ) ( 129 216 16 ) ( 128 217 16 ) prototype_textures/dark/texture_03 0 0 0 1 1
 ( 132 244 92 ) ( 132 245 92 ) ( 133 244 92 ) prototype_textures/dark/texture_03 0 0 0 1 1
 ( 132 244 92 ) ( 133 244 92 ) ( 132 244 93 ) wall/Bricks046 8 0 0 0.06 0.06
-( 132 244 92 ) ( 132 244 93 ) ( 132 245 92 ) prototype_textures/dark/texture_03 0 0 0 1 1
+( 132 244 92 ) ( 132 244 93 ) ( 132 245 92 ) wall/Bricks046 8 0 0 0.06 0.06
 }
 // brush 13
 {
@@ -6845,8 +6845,8 @@
 ( 128 268 16 ) ( 128 268 17 ) ( 129 268 16 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 128 268 16 ) ( 129 268 16 ) ( 128 269 16 ) prototype_textures/dark/texture_03 0 0 0 1 1
 ( 132 288 92 ) ( 132 289 92 ) ( 133 288 92 ) prototype_textures/dark/texture_03 0 0 0 1 1
-( 132 288 92 ) ( 133 288 92 ) ( 132 288 93 ) prototype_textures/dark/texture_03 0 0 0 1 1
-( 132 288 92 ) ( 132 288 93 ) ( 132 289 92 ) prototype_textures/dark/texture_03 0 0 0 1 1
+( 132 288 92 ) ( 133 288 92 ) ( 132 288 93 ) wall/Bricks046 8 0 0 0.06 0.06
+( 132 288 92 ) ( 132 288 93 ) ( 132 289 92 ) wall/Bricks046 8 0 0 0.06 0.06
 }
 // brush 14
 {
@@ -6859,7 +6859,7 @@
 }
 // brush 15
 {
-( 576 284 88 ) ( 576 124 88 ) ( 576 124 16 ) __TB_empty 0 0 0 1 1
+( 576 284 88 ) ( 576 124 88 ) ( 576 124 16 ) buildings/PaintedPlaster011_1K-PNG_Color 0 12 0 0.05 0.05
 ( 576 124 88 ) ( 580 124 88 ) ( 580 124 16 ) __TB_empty 0 0 0 1 1
 ( 580 124 16 ) ( 580 284 16 ) ( 576 284 16 ) __TB_empty 0 0 0 1 1
 ( 576 284 88 ) ( 580 284 88 ) ( 580 124 88 ) __TB_empty 0 0 0 1 1
@@ -6872,7 +6872,7 @@
 ( 184 108 88 ) ( 236 108 88 ) ( 236 108 16 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 236 108 16 ) ( 236 112 16 ) ( 184 112 16 ) prototype_textures/dark/texture_03 -36.307693 0 0 0.8666666 1
 ( 184 112 88 ) ( 236 112 88 ) ( 236 108 88 ) prototype_textures/dark/texture_03 -36.307693 0 0 0.8666666 1
-( 236 112 16 ) ( 236 112 88 ) ( 184 112 88 ) prototype_textures/dark/texture_03 -36.307693 0.8888889 0 0.8666666 0.94736844
+( 236 112 16 ) ( 236 112 88 ) ( 184 112 88 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 236 108 88 ) ( 236 112 88 ) ( 236 112 16 ) buildings/concrete35_r 0 0 0 0.05 0.05
 }
 // brush 17
@@ -6881,7 +6881,7 @@
 ( 260 108 88 ) ( 288 108 88 ) ( 288 108 16 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 288 108 16 ) ( 288 112 16 ) ( 260 112 16 ) prototype_textures/dark/texture_03 0 0 0 1 1
 ( 260 112 88 ) ( 288 112 88 ) ( 288 108 88 ) prototype_textures/dark/texture_03 0 0 0 1 1
-( 288 112 16 ) ( 288 112 88 ) ( 260 112 88 ) prototype_textures/dark/texture_03 0 0.8888889 0 1 0.94736844
+( 288 112 16 ) ( 288 112 88 ) ( 260 112 88 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 288 108 88 ) ( 288 112 88 ) ( 288 112 16 ) wall/Bricks046 8 0 0 0.06 0.06
 }
 // brush 18
@@ -6939,7 +6939,7 @@
 }
 // brush 24
 {
-( 284 124 168 ) ( 284 120 168 ) ( 284 120 88 ) prototype_textures/dark/texture_03 0 0 0 1 1
+( 284 124 168 ) ( 284 120 168 ) ( 284 120 88 ) buildings/PaintedPlaster011_1K-PNG_Color 0 12 0 0.05 0.05
 ( 284 120 168 ) ( 416 120 168 ) ( 416 120 88 ) buildings/concrete35 0 0 0 0.05 0.05
 ( 416 120 88 ) ( 416 124 88 ) ( 284 124 88 ) prototype_textures/dark/texture_03 0 0 0 1 1
 ( 284 124 168 ) ( 416 124 168 ) ( 416 120 168 ) prototype_textures/dark/texture_03 0 0 0 1 1
@@ -6975,12 +6975,12 @@
 }
 // brush 28
 {
-( 184 208 92 ) ( 184 208 116 ) ( 184 184 92 ) buildings/concrete35 0 0 0 0.05 0.05
+( 184 208 92 ) ( 184 208 116 ) ( 184 184 92 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 184 184 92 ) ( 184 184 116 ) ( 188 184 92 ) prototype_textures/dark/texture_06 108 -4 0 1 1
 ( 184 208 92 ) ( 184 184 92 ) ( 188 208 92 ) prototype_textures/dark/texture_06 104 192 0 1 1
-( 188 184 116 ) ( 184 184 116 ) ( 188 208 116 ) buildings/concrete35 0 0 0 0.05 0.05
+( 188 184 116 ) ( 184 184 116 ) ( 188 208 116 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 188 208 92 ) ( 188 208 116 ) ( 184 208 92 ) prototype_textures/dark/texture_06 108 -4 0 1 1
-( 188 184 92 ) ( 188 184 116 ) ( 188 208 92 ) buildings/PaintedPlaster011_1K-PNG_Color 0 12 0 0.05 0.05
+( 188 184 92 ) ( 188 184 116 ) ( 188 208 92 ) wall/Bricks046 8 0 0 0.06 0.06
 }
 // brush 29
 {
@@ -7024,7 +7024,7 @@
 ( 184 108 168 ) ( 284 108 168 ) ( 284 108 88 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 284 108 88 ) ( 284 112 88 ) ( 184 112 88 ) prototype_textures/dark/texture_03 0 0 0 1 1
 ( 184 112 168 ) ( 284 112 168 ) ( 284 108 168 ) prototype_textures/dark/texture_03 0 0 0 1 1
-( 284 112 88 ) ( 284 112 168 ) ( 184 112 168 ) buildings/PaintedPlaster011_1K-PNG_Color 0 12 0 0.05 0.05
+( 284 112 88 ) ( 284 112 168 ) ( 184 112 168 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 284 108 168 ) ( 284 112 168 ) ( 284 112 88 ) prototype_textures/dark/texture_03 0 0 0 1 1
 }
 // brush 34
@@ -7139,7 +7139,7 @@
 }
 // brush 46
 {
-( 284 108 88 ) ( 284 109 88 ) ( 284 108 89 ) prototype_textures/dark/texture_03 0 0 0 1 1
+( 284 108 88 ) ( 284 109 88 ) ( 284 108 89 ) buildings/PaintedPlaster011_1K-PNG_Color 0 12 0 0.05 0.05
 ( 284 108 88 ) ( 284 108 89 ) ( 285 108 88 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 284 108 88 ) ( 285 108 88 ) ( 284 109 88 ) prototype_textures/dark/texture_03 0 0 0 1 1
 ( 288 120 168 ) ( 288 121 168 ) ( 289 120 168 ) prototype_textures/dark/texture_03 0 0 0 1 1
@@ -7152,7 +7152,7 @@
 ( 176 108 112 ) ( 184 108 112 ) ( 184 108 16 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 184 108 16 ) ( 184 112 16 ) ( 176 112 16 ) prototype_textures/dark/texture_03 0 0 0 1 1
 ( 176 112 112 ) ( 184 112 112 ) ( 184 108 112 ) wall/Bricks046 8 0 0 0.06 0.06
-( 184 112 16 ) ( 184 112 112 ) ( 176 112 112 ) prototype_textures/dark/texture_03 0 0 0 1 1
+( 184 112 16 ) ( 184 112 112 ) ( 176 112 112 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 184 108 112 ) ( 184 112 112 ) ( 184 112 16 ) prototype_textures/dark/texture_03 0 -76.666664 0 1 4.7999997
 }
 // brush 48
@@ -7161,25 +7161,25 @@
 ( 236 108 88 ) ( 260 108 88 ) ( 260 108 64 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 260 108 64 ) ( 260 112 64 ) ( 236 112 64 ) buildings/concrete35_r 0 0 0 0.05 0.05
 ( 236 112 88 ) ( 260 112 88 ) ( 260 108 88 ) prototype_textures/dark/texture_03 0 0 0 1 1
-( 260 112 64 ) ( 260 112 88 ) ( 236 112 88 ) prototype_textures/dark/texture_03 0 0 0 1 1
+( 260 112 64 ) ( 260 112 88 ) ( 236 112 88 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 260 108 88 ) ( 260 112 88 ) ( 260 112 64 ) prototype_textures/dark/texture_03 0 0 0 1 1
 }
 // brush 49
 {
-( 184 152 88 ) ( 184 112 88 ) ( 184 112 16 ) prototype_textures/dark/texture_03 -4 0 0 1 1
+( 184 152 88 ) ( 184 112 88 ) ( 184 112 16 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 184 112 88 ) ( 188 112 88 ) ( 188 112 16 ) prototype_textures/dark/texture_03 0 0 0 1 1
 ( 188 112 16 ) ( 188 152 16 ) ( 184 152 16 ) prototype_textures/dark/texture_03 0 4 0 1 1
 ( 184 152 88 ) ( 188 152 88 ) ( 188 112 88 ) prototype_textures/dark/texture_03 0 4 0 1 1
-( 188 152 16 ) ( 188 152 88 ) ( 184 152 88 ) prototype_textures/dark/texture_03 0 0 0 1 1
-( 188 112 88 ) ( 188 152 88 ) ( 188 152 16 ) buildings/PaintedPlaster011_1K-PNG_Color 0 12 0 0.05 0.05
+( 188 152 16 ) ( 188 152 88 ) ( 184 152 88 ) wall/Bricks046 8 0 0 0.06 0.06
+( 188 112 88 ) ( 188 152 88 ) ( 188 152 16 ) wall/Bricks046 8 0 0 0.06 0.06
 }
 // brush 50
 {
 ( 176 160 92 ) ( 176 112 92 ) ( 176 112 88 ) prototype_textures/red/texture_02 -4 0 0 1 1
 ( 176 112 92 ) ( 284 112 92 ) ( 284 112 88 ) prototype_textures/red/texture_02 4 0 0 1 1
-( 284 112 88 ) ( 284 160 88 ) ( 176 160 88 ) prototype_textures/red/texture_02 4 4 0 1 1
+( 284 112 88 ) ( 284 160 88 ) ( 176 160 88 ) buildings/rock_001 0 0 0 0.05 0.05
 ( 176 160 92 ) ( 284 160 92 ) ( 284 112 92 ) buildings/concrete35_r 0 0 0 0.05 0.05
-( 284 160 88 ) ( 284 160 92 ) ( 176 160 92 ) prototype_textures/red/texture_02 4 0 0 1 1
+( 284 160 88 ) ( 284 160 92 ) ( 176 160 92 ) details/metal_grungy 0 0 0 0.05 0.05
 ( 284 112 92 ) ( 284 160 92 ) ( 284 160 88 ) prototype_textures/red/texture_02 -4 0 0 1 1
 }
 // brush 51
@@ -7202,9 +7202,9 @@
 }
 // brush 53
 {
-( 284 284 92 ) ( 284 124 92 ) ( 284 124 88 ) prototype_textures/red/texture_02 0 0 0 1 1
+( 284 284 92 ) ( 284 124 92 ) ( 284 124 88 ) details/metal_grungy 0 0 0 0.05 0.05
 ( 284 124 92 ) ( 576 124 92 ) ( 576 124 88 ) prototype_textures/red/texture_02 0 0 0 1 1
-( 576 124 88 ) ( 576 284 88 ) ( 284 284 88 ) prototype_textures/red/texture_02 0 0 0 1 1
+( 576 124 88 ) ( 576 284 88 ) ( 284 284 88 ) buildings/rock_001 0 0 0 0.05 0.05
 ( 284 284 92 ) ( 576 284 92 ) ( 576 124 92 ) buildings/concrete35_r 0 0 0 0.05 0.05
 ( 576 284 88 ) ( 576 284 92 ) ( 284 284 92 ) prototype_textures/red/texture_02 0 0 0 1 1
 ( 576 124 92 ) ( 576 284 92 ) ( 576 284 88 ) prototype_textures/red/texture_02 0 0 0 1 1
@@ -7220,8 +7220,8 @@
 }
 // brush 55
 {
-( 184 284 92 ) ( 184 192 92 ) ( 184 192 16 ) prototype_textures/dark/texture_03 0 0 0 1 1
-( 184 192 92 ) ( 188 192 92 ) ( 188 192 16 ) prototype_textures/dark/texture_03 0 0 0 1 1
+( 184 284 92 ) ( 184 192 92 ) ( 184 192 16 ) wall/Bricks046 8 0 0 0.06 0.06
+( 184 192 92 ) ( 188 192 92 ) ( 188 192 16 ) wall/Bricks046 8 0 0 0.06 0.06
 ( 188 192 16 ) ( 188 284 16 ) ( 184 284 16 ) prototype_textures/dark/texture_03 0 0 0 1 1
 ( 184 284 92 ) ( 188 284 92 ) ( 188 192 92 ) prototype_textures/dark/texture_03 0 0 0 1 1
 ( 188 284 16 ) ( 188 284 92 ) ( 184 284 92 ) prototype_textures/dark/texture_03 0 0 0 1 1
@@ -7486,6 +7486,37 @@
 ( 180 292 168 ) ( 184 292 168 ) ( 184 104 168 ) __TB_empty -0.7684202 -5.6412745 0 1 4.712386
 ( 184 292 164 ) ( 184 292 168 ) ( 180 292 168 ) details/metal_grungy 0 0 0 0.05 0.05
 ( 184 104 168 ) ( 184 292 168 ) ( 184 292 164 ) __TB_empty 5.8723397 8 0 4.699999 0.25
+}
+// brush 84
+{
+( 290 180 17 ) ( 290 170 17 ) ( 290 170 15 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
+( 290 170 17 ) ( 300 170 17 ) ( 300 170 15 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
+( 295 171 16 ) ( 423 175 16 ) ( 295 175 16 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
+( 290 180 17 ) ( 300 180 17 ) ( 300 170 17 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
+( 300 180 15 ) ( 300 180 17 ) ( 290 180 17 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
+( 300 170 17 ) ( 300 180 17 ) ( 300 180 15 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
+}
+// brush 85
+{
+( 292 178 88 ) ( 292 172 88 ) ( 292 172 16 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
+( 292 174 52 ) ( 294 172 180 ) ( 294 172 52 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
+( 292 172 88 ) ( 298 172 88 ) ( 298 172 16 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
+( 298 172 16 ) ( 298 178 16 ) ( 292 178 16 ) __TB_empty 0 0 0 1 1
+( 292 178 88 ) ( 298 178 88 ) ( 298 172 88 ) __TB_empty 0 0 0 1 1
+( 298 178 16 ) ( 298 178 88 ) ( 292 178 88 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
+( 298 172 88 ) ( 298 178 88 ) ( 298 178 16 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
+}
+// brush 86
+{
+( 290 180 88 ) ( 290 170 88 ) ( 290 170 86 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
+( 290 170 88 ) ( 300 170 88 ) ( 300 170 86 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
+( 295 170 87 ) ( 423 171 86 ) ( 295 171 86 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
+( 300 170 86 ) ( 300 180 86 ) ( 290 180 86 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
+( 290 180 88 ) ( 300 180 88 ) ( 300 170 88 ) buildings/concrete35 0 0 0 1 1
+( 295 180 87 ) ( 295 179 86 ) ( 423 179 86 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
+( 300 180 86 ) ( 300 180 88 ) ( 290 180 88 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
+( 300 175 87 ) ( 299 303 86 ) ( 299 175 86 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
+( 300 170 88 ) ( 300 180 88 ) ( 300 180 86 ) buildings/concrete35 0 17.777777 0 0.05 0.047368422
 }
 }
 // entity 16
