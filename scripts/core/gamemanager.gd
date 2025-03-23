@@ -73,7 +73,7 @@ func _process(_delta):
 		print_debug_info()
 	timerLabel.text = timer_to_string(time)
 		
-	on_countdown(time)
+	##on_countdown(time)
 #endregion
 
 #region Debug Config

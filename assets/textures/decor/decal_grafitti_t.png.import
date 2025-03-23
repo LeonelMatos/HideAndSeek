@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bseoq4d6hlrwx"
-path.s3tc="res://.godot/imported/metal_rusty.png-267c5e7483a8f169ccbe09cb816b74cc.s3tc.ctex"
+uid="uid://brbcip2ancmxa"
+path.s3tc="res://.godot/imported/decal_grafitti_t.png-c7451583443f3bc845725eecf38b308b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/details/metal_rusty.png"
-dest_files=["res://.godot/imported/metal_rusty.png-267c5e7483a8f169ccbe09cb816b74cc.s3tc.ctex"]
+source_file="res://assets/textures/decor/decal_grafitti_t.png"
+dest_files=["res://.godot/imported/decal_grafitti_t.png-c7451583443f3bc845725eecf38b308b.s3tc.ctex"]
 
 [params]
 

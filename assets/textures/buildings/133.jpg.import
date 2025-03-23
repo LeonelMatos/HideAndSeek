@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bseoq4d6hlrwx"
-path.s3tc="res://.godot/imported/metal_rusty.png-267c5e7483a8f169ccbe09cb816b74cc.s3tc.ctex"
+uid="uid://dfit0s0d0rkwr"
+path="res://.godot/imported/133.jpg-99278fa748329717531532cb4901a1a5.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/details/metal_rusty.png"
-dest_files=["res://.godot/imported/metal_rusty.png-267c5e7483a8f169ccbe09cb816b74cc.s3tc.ctex"]
+source_file="res://assets/textures/buildings/133.jpg"
+dest_files=["res://.godot/imported/133.jpg-99278fa748329717531532cb4901a1a5.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
